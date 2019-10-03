@@ -9,7 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".UpdateAdmin"></activity>
+        <activity android:name=".TransactionOffline"></activity>
+        <activity android:name=".TransactionOnline" />
+        <activity android:name=".TransactionAdmin" />
+        <activity android:name=".DeleteAdmin" />
+        <activity android:name=".AddAdmin" />
+        <activity android:name=".UpdateAdmin" />
         <activity android:name=".FiturAdmin" />
         <activity android:name=".LoginAdmin" />
         <activity android:name=".MainActivity">
