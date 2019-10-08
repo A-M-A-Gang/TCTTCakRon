@@ -2,6 +2,7 @@ package id.ac.polinema.tcttcakron;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -14,6 +15,7 @@ public class LoginAdmin extends AppCompatActivity {
     }
 
     public void handlerOnClickLogin(View view) {
-        setContentView(R.layout.activity_fitur_admin);
+        Intent intent = new Intent(this, FiturAdmin.class);
+        startActivity(intent);
     }
 }

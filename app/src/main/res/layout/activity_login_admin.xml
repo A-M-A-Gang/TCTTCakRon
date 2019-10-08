@@ -52,7 +52,7 @@
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
-        android:onClick="handlerOnClickLogin"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textPassword" />
@@ -66,5 +66,6 @@
         app:layout_constraintEnd_toEndOf="@+id/in_password"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/in_password" />
+        app:layout_constraintTop_toBottomOf="@+id/in_password"
+        android:onClick="handlerOnClickLogin"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
