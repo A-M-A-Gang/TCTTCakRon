@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".LoginAdmin">
 
+    <ImageView
+        android:id="@+id/imageView11"
+        android:layout_width="256dp"
+        android:layout_height="232dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/tt" />
+
     <TextView
         android:id="@+id/textUsername"
         android:layout_width="wrap_content"
@@ -18,7 +29,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView11"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/in_username"
@@ -68,4 +80,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/in_password"
         android:onClick="handlerOnClickLogin"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
