@@ -6,4 +6,173 @@
     android:layout_height="match_parent"
     tools:context=".TransactionOffline">
 
+    <TextView
+        android:id="@+id/textoffline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="Transaction Offline"
+        android:textColor="@color/colorBlack"
+        android:fontFamily="sans-serif-medium"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/texttittlenama"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:text="Nama Pelanggan"
+        android:textColor="@color/colorBlack"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textoffline" />
+
+    <CheckedTextView
+        android:id="@+id/checkednamapelanggan"
+        android:layout_width="187dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/texttittlenama"
+        app:layout_constraintTop_toBottomOf="@+id/textoffline" />
+
+    <TextView
+        android:id="@+id/textnama1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="56dp"
+        android:text="Nama Makanan"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/texttittlenama" />
+
+    <TextView
+        android:id="@+id/textnama2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:text="Nama Makanan"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textnama1" />
+
+    <TextView
+        android:id="@+id/textnama3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:text="Nama Makanan"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textnama2" />
+
+    <TextView
+        android:id="@+id/textnama4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:text="Nama Makanan"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textnama3" />
+
+    <TextView
+        android:id="@+id/textnama5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:text="Nama Makanan"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textnama4" />
+
+    <TextView
+        android:id="@+id/textnama6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:text="Nama Makanan"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textnama5" />
+
+    <TextView
+        android:id="@+id/textharga1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="56dp"
+        android:text="Harga"
+        android:fontFamily="sans-serif-medium"
+        app:layout_constraintStart_toEndOf="@+id/textnama1"
+        app:layout_constraintTop_toBottomOf="@+id/texttittlenama" />
+
+    <TextView
+        android:id="@+id/textharga2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="20dp"
+        android:text="Harga"
+        android:fontFamily="sans-serif-medium"
+        app:layout_constraintStart_toEndOf="@+id/textnama2"
+        app:layout_constraintTop_toBottomOf="@+id/textharga1" />
+
+    <TextView
+        android:id="@+id/textharga3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="20dp"
+        android:text="Harga"
+        android:fontFamily="sans-serif-medium"
+        app:layout_constraintStart_toEndOf="@+id/textnama3"
+        app:layout_constraintTop_toBottomOf="@+id/textharga2" />
+
+    <TextView
+        android:id="@+id/textharga4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="20dp"
+        android:text="Harga"
+        android:fontFamily="sans-serif-medium"
+        app:layout_constraintStart_toEndOf="@+id/textnama4"
+        app:layout_constraintTop_toBottomOf="@+id/textharga3" />
+
+    <TextView
+        android:id="@+id/textharga5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="20dp"
+        android:text="Harga"
+        android:fontFamily="sans-serif-medium"
+        app:layout_constraintStart_toEndOf="@+id/textnama5"
+        app:layout_constraintTop_toBottomOf="@+id/textharga4" />
+
+    <TextView
+        android:id="@+id/textharga6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="20dp"
+        android:text="Harga"
+        android:fontFamily="sans-serif-medium"
+        app:layout_constraintStart_toEndOf="@+id/textnama6"
+        app:layout_constraintTop_toBottomOf="@+id/textharga5" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
