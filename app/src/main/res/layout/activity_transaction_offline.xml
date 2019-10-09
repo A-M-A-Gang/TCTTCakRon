@@ -43,6 +43,83 @@
         app:layout_constraintStart_toEndOf="@+id/texttittlenama"
         app:layout_constraintTop_toBottomOf="@+id/textoffline" />
 
+    <CheckedTextView
+        android:id="@+id/checkednamapelanggan2"
+        android:layout_width="187dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="56dp"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.826"
+        app:layout_constraintStart_toEndOf="@+id/textharga1"
+        app:layout_constraintTop_toBottomOf="@+id/checkednamapelanggan" />
+
+    <CheckedTextView
+        android:id="@+id/checkednamapelanggan3"
+        android:layout_width="187dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="20dp"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.869"
+        app:layout_constraintStart_toEndOf="@+id/textharga2"
+        app:layout_constraintTop_toBottomOf="@+id/checkednamapelanggan2" />
+
+    <CheckedTextView
+        android:id="@+id/checkednamapelanggan4"
+        android:layout_width="187dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="16dp"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.869"
+        app:layout_constraintStart_toEndOf="@+id/textharga3"
+        app:layout_constraintTop_toBottomOf="@+id/checkednamapelanggan3" />
+
+    <CheckedTextView
+        android:id="@+id/checkednamapelanggan6"
+        android:layout_width="187dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="20dp"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.869"
+        app:layout_constraintStart_toEndOf="@+id/textharga4"
+        app:layout_constraintTop_toBottomOf="@+id/checkednamapelanggan4" />
+
+    <CheckedTextView
+        android:id="@+id/checkednamapelanggan7"
+        android:layout_width="187dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="16dp"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.869"
+        app:layout_constraintStart_toEndOf="@+id/textharga5"
+        app:layout_constraintTop_toBottomOf="@+id/checkednamapelanggan6" />
+
+    <CheckedTextView
+        android:id="@+id/checkednamapelanggan8"
+        android:layout_width="187dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="20dp"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.869"
+        app:layout_constraintStart_toEndOf="@+id/textharga6"
+        app:layout_constraintTop_toBottomOf="@+id/checkednamapelanggan7" />
+
+    <CheckedTextView
+        android:id="@+id/checkednamapelanggan9"
+        android:layout_width="111dp"
+        android:layout_height="16dp"
+        android:layout_marginBottom="8dp"
+        android:text=""
+        app:layout_constraintBottom_toTopOf="@+id/button7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintStart_toEndOf="@+id/textView3" />
+
     <TextView
         android:id="@+id/textnama1"
         android:layout_width="wrap_content"
@@ -174,5 +251,38 @@
         android:fontFamily="sans-serif-medium"
         app:layout_constraintStart_toEndOf="@+id/textnama6"
         app:layout_constraintTop_toBottomOf="@+id/textharga5" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="232dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="Total :"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintBottom_toTopOf="@+id/button7"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/checkednamapelanggan9"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="85dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="Batal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="Pesan"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
