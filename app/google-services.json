@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "659645914741",
+    "firebase_url": "https://tctt-cak-ron.firebaseio.com",
+    "project_id": "tctt-cak-ron",
+    "storage_bucket": "tctt-cak-ron.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:659645914741:android:cd35f301ada6cad13c223c",
+        "android_client_info": {
+          "package_name": "id.ac.polinema.tcttcakron"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "659645914741-q5o99trp1jidsljdr1tenr8majq0tekh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFBr1AVHBlEvfYip1_EvdUgiKpjWxwmgw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "659645914741-q5o99trp1jidsljdr1tenr8majq0tekh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
