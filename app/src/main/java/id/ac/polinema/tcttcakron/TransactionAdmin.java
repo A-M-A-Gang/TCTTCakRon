@@ -23,4 +23,9 @@ public class TransactionAdmin extends AppCompatActivity {
         Intent intent = new Intent(this, TransactionOnline.class);
         startActivity(intent);
     }
+
+    public void handlerOnClickBack(View view) {
+        Intent intent = new Intent(this, FiturAdmin.class);
+        startActivity(intent);
+    }
 }

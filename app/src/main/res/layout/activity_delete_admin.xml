@@ -80,7 +80,7 @@
         android:text="Nama Makanan"
         android:textColor="@color/colorBlack"
         app:layout_constraintStart_toEndOf="@+id/imageView7"
-        app:layout_constraintTop_toBottomOf="@+id/buttonUpdate" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonDelete" />
 
     <TextView
         android:id="@+id/textView7"
@@ -112,7 +112,7 @@
         android:text="Nama Makanan"
         android:textColor="@color/colorBlack"
         app:layout_constraintStart_toEndOf="@+id/imageView8"
-        app:layout_constraintTop_toBottomOf="@+id/buttonUpdate3" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonDelete2" />
 
     <TextView
         android:id="@+id/textView9"
@@ -126,32 +126,35 @@
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <Button
-        android:id="@+id/buttonUpdate"
+        android:id="@+id/buttonDelete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="76dp"
         android:layout_marginTop="12dp"
         android:text="Delete"
+        android:onClick="handlerOnClickDelete"
         app:layout_constraintStart_toEndOf="@+id/imageView6"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <Button
-        android:id="@+id/buttonUpdate2"
+        android:id="@+id/buttonDelete3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
         android:layout_marginTop="12dp"
         android:text="Delete"
+        android:onClick="handlerOnClickDelete"
         app:layout_constraintStart_toEndOf="@+id/imageView8"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <Button
-        android:id="@+id/buttonUpdate3"
+        android:id="@+id/buttonDelete2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
         android:layout_marginTop="16dp"
         android:text="Delete"
+        android:onClick="handlerOnClickDelete"
         app:layout_constraintStart_toEndOf="@+id/imageView7"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
