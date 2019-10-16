@@ -33,81 +33,79 @@
 
     <CheckedTextView
         android:id="@+id/checkednamapelanggan"
-        android:layout_width="187dp"
-        android:layout_height="21dp"
+        android:layout_width="213dp"
+        android:layout_height="22dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
         android:text=""
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintBottom_toBottomOf="@+id/texttittlenama"
         app:layout_constraintStart_toEndOf="@+id/texttittlenama"
-        app:layout_constraintTop_toBottomOf="@+id/textoffline" />
+        app:layout_constraintTop_toTopOf="@+id/texttittlenama" />
 
     <CheckedTextView
         android:id="@+id/checkednamapelanggan2"
         android:layout_width="187dp"
         android:layout_height="21dp"
-        android:layout_marginTop="56dp"
         android:text=""
+        app:layout_constraintBottom_toBottomOf="@+id/textharga1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.826"
         app:layout_constraintStart_toEndOf="@+id/textharga1"
-        app:layout_constraintTop_toBottomOf="@+id/checkednamapelanggan" />
+        app:layout_constraintTop_toTopOf="@+id/textharga1" />
 
     <CheckedTextView
         android:id="@+id/checkednamapelanggan3"
-        android:layout_width="187dp"
+        android:layout_width="186dp"
         android:layout_height="21dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
         android:text=""
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.869"
+        app:layout_constraintBottom_toBottomOf="@+id/textharga2"
         app:layout_constraintStart_toEndOf="@+id/textharga2"
-        app:layout_constraintTop_toBottomOf="@+id/checkednamapelanggan2" />
+        app:layout_constraintTop_toTopOf="@+id/textharga2"
+        app:layout_constraintVertical_bias="1.0" />
 
     <CheckedTextView
         android:id="@+id/checkednamapelanggan4"
         android:layout_width="187dp"
         android:layout_height="21dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="20dp"
         android:text=""
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.869"
+        app:layout_constraintBottom_toBottomOf="@+id/textharga3"
         app:layout_constraintStart_toEndOf="@+id/textharga3"
-        app:layout_constraintTop_toBottomOf="@+id/checkednamapelanggan3" />
+        app:layout_constraintTop_toTopOf="@+id/textharga3"
+        app:layout_constraintVertical_bias="1.0" />
 
     <CheckedTextView
         android:id="@+id/checkednamapelanggan6"
         android:layout_width="187dp"
         android:layout_height="21dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
         android:text=""
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.869"
+        app:layout_constraintBottom_toBottomOf="@+id/textharga4"
         app:layout_constraintStart_toEndOf="@+id/textharga4"
-        app:layout_constraintTop_toBottomOf="@+id/checkednamapelanggan4" />
+        app:layout_constraintTop_toTopOf="@+id/textharga4"
+        app:layout_constraintVertical_bias="1.0" />
 
     <CheckedTextView
         android:id="@+id/checkednamapelanggan7"
         android:layout_width="187dp"
         android:layout_height="21dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="20dp"
         android:text=""
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.869"
+        app:layout_constraintBottom_toBottomOf="@+id/textharga5"
         app:layout_constraintStart_toEndOf="@+id/textharga5"
-        app:layout_constraintTop_toBottomOf="@+id/checkednamapelanggan6" />
+        app:layout_constraintTop_toTopOf="@+id/textharga5"
+        app:layout_constraintVertical_bias="1.0" />
 
     <CheckedTextView
         android:id="@+id/checkednamapelanggan8"
         android:layout_width="187dp"
         android:layout_height="21dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
         android:text=""
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.869"
+        app:layout_constraintBottom_toBottomOf="@+id/textharga6"
         app:layout_constraintStart_toEndOf="@+id/textharga6"
-        app:layout_constraintTop_toBottomOf="@+id/checkednamapelanggan7" />
+        app:layout_constraintTop_toTopOf="@+id/textharga6"
+        app:layout_constraintVertical_bias="1.0" />
 
     <CheckedTextView
         android:id="@+id/checkednamapelanggan9"
@@ -124,66 +122,65 @@
         android:id="@+id/textnama1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="56dp"
         android:text="Nama Makanan"
         android:textColor="@color/colorBlack"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/texttittlenama"
         app:layout_constraintTop_toBottomOf="@+id/texttittlenama" />
 
     <TextView
         android:id="@+id/textnama2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
         android:text="Nama Makanan"
         android:textColor="@color/colorBlack"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textnama1"
+        app:layout_constraintStart_toStartOf="@+id/textnama1"
         app:layout_constraintTop_toBottomOf="@+id/textnama1" />
 
     <TextView
         android:id="@+id/textnama3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
         android:text="Nama Makanan"
         android:textColor="@color/colorBlack"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textnama2"
+        app:layout_constraintStart_toStartOf="@+id/textnama2"
         app:layout_constraintTop_toBottomOf="@+id/textnama2" />
 
     <TextView
         android:id="@+id/textnama4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
         android:text="Nama Makanan"
         android:textColor="@color/colorBlack"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textnama3"
+        app:layout_constraintStart_toStartOf="@+id/textnama3"
         app:layout_constraintTop_toBottomOf="@+id/textnama3" />
 
     <TextView
         android:id="@+id/textnama5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
         android:text="Nama Makanan"
         android:textColor="@color/colorBlack"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textnama4"
+        app:layout_constraintStart_toStartOf="@+id/textnama4"
         app:layout_constraintTop_toBottomOf="@+id/textnama4" />
 
     <TextView
         android:id="@+id/textnama6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
         android:text="Nama Makanan"
         android:textColor="@color/colorBlack"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textnama5"
+        app:layout_constraintStart_toStartOf="@+id/textnama5"
         app:layout_constraintTop_toBottomOf="@+id/textnama5" />
 
     <TextView
@@ -191,66 +188,66 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="56dp"
-        android:text="Harga"
         android:fontFamily="sans-serif-medium"
+        android:text="Harga"
+        app:layout_constraintBottom_toBottomOf="@+id/textnama1"
         app:layout_constraintStart_toEndOf="@+id/textnama1"
-        app:layout_constraintTop_toBottomOf="@+id/texttittlenama" />
+        app:layout_constraintTop_toTopOf="@+id/textnama1" />
 
     <TextView
         android:id="@+id/textharga2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="20dp"
-        android:text="Harga"
         android:fontFamily="sans-serif-medium"
+        android:text="Harga"
+        app:layout_constraintBottom_toBottomOf="@+id/textnama2"
         app:layout_constraintStart_toEndOf="@+id/textnama2"
-        app:layout_constraintTop_toBottomOf="@+id/textharga1" />
+        app:layout_constraintTop_toTopOf="@+id/textnama2" />
 
     <TextView
         android:id="@+id/textharga3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="20dp"
-        android:text="Harga"
         android:fontFamily="sans-serif-medium"
+        android:text="Harga"
+        app:layout_constraintBottom_toBottomOf="@+id/textnama3"
         app:layout_constraintStart_toEndOf="@+id/textnama3"
-        app:layout_constraintTop_toBottomOf="@+id/textharga2" />
+        app:layout_constraintTop_toTopOf="@+id/textnama3" />
 
     <TextView
         android:id="@+id/textharga4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="20dp"
-        android:text="Harga"
         android:fontFamily="sans-serif-medium"
+        android:text="Harga"
+        app:layout_constraintBottom_toBottomOf="@+id/textnama4"
         app:layout_constraintStart_toEndOf="@+id/textnama4"
-        app:layout_constraintTop_toBottomOf="@+id/textharga3" />
+        app:layout_constraintTop_toTopOf="@+id/textnama4" />
 
     <TextView
         android:id="@+id/textharga5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="20dp"
-        android:text="Harga"
         android:fontFamily="sans-serif-medium"
+        android:text="Harga"
+        app:layout_constraintBottom_toBottomOf="@+id/textnama5"
         app:layout_constraintStart_toEndOf="@+id/textnama5"
-        app:layout_constraintTop_toBottomOf="@+id/textharga4" />
+        app:layout_constraintTop_toTopOf="@+id/textnama5" />
 
     <TextView
         android:id="@+id/textharga6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="20dp"
-        android:text="Harga"
         android:fontFamily="sans-serif-medium"
+        android:text="Harga"
+        app:layout_constraintBottom_toBottomOf="@+id/textnama6"
         app:layout_constraintStart_toEndOf="@+id/textnama6"
-        app:layout_constraintTop_toBottomOf="@+id/textharga5" />
+        app:layout_constraintTop_toTopOf="@+id/textnama6" />
 
     <TextView
         android:id="@+id/textView3"
@@ -266,12 +263,13 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/buttonBack"
         android:layout_width="85dp"
         android:layout_height="45dp"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="16dp"
-        android:text="Batal"
+        android:onClick="handlerOnClickBack"
+        android:text="Kembali"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
