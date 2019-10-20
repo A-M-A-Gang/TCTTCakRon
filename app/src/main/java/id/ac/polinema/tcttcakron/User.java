@@ -3,6 +3,9 @@ package id.ac.polinema.tcttcakron;
 public class User {
     private String username, password;
 
+    public User() {
+    }
+
     public String getUsername() {
         return username;
     }
