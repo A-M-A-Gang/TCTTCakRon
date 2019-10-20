@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "659645914741-jqrs1407qhprrn95qkudej92a0tj7b2d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.ac.polinema.tcttcakron",
+            "certificate_hash": "aaa8f22987a85b808b3c4e7318f7060e3c7626f1"
+          }
+        },
+        {
           "client_id": "659645914741-q5o99trp1jidsljdr1tenr8majq0tekh.apps.googleusercontent.com",
           "client_type": 3
         }
