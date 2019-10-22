@@ -4,11 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.Image;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
@@ -53,9 +55,16 @@ public class AddAdmin extends AppCompatActivity {
     final int PIC_CROP = 3;
     private int GALLERY = 1, CAMERA = 2;
     private static final String IMAGE_DIRECTORY = "/tctt";
+    private static final int GALLERY_REQUEST_CODE = 1;
+    private static final String TAG = AddAdmin.class.getCanonicalName();
     private StorageReference mStorageRef;
     private DatabaseReference mDatabaseRef;
     private StorageTask mUploadTask;
+    Uri FilePathUri;
+    StorageReference storageReference;
+    DatabaseReference databaseReference;
+    int Image_Request_Code = 7;
+    ProgressDialog progressDialog ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,8 +74,9 @@ public class AddAdmin extends AppCompatActivity {
         add = findViewById(R.id.buttonAdd);
         nama = findViewById(R.id.editTextNamaMakanan);
         harga = findViewById(R.id.editTextHarga);
+        progressDialog = new ProgressDialog(AddAdmin.this);
 
-        mStorageRef = FirebaseStorage.getInstance().getReference("image");
+        mStorageRef = FirebaseStorage.getInstance().getReference("Menu");
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("Menu");
 
 
@@ -80,11 +90,7 @@ public class AddAdmin extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (mUploadTask != null && mUploadTask.isInProgress()){
-                    Toast.makeText(AddAdmin.this, "Upload in progress..", Toast.LENGTH_SHORT).show();
-                } else {
-                    uploadFile();
-                }
+                uploadFile();
             }
         });
     }
@@ -159,6 +165,7 @@ public class AddAdmin extends AppCompatActivity {
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent, PICK_IMAGE_REQUEST);
+//        startActivityForResult(Intent.createChooser(intent, "Select Image"), Image_Request_Code);
     }
 
     @Override
@@ -169,18 +176,20 @@ public class AddAdmin extends AppCompatActivity {
         }
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             if (data != null) {
-                picUri = data.getData();
+                FilePathUri = data.getData();
 //                Uri contentURI = data.getData();
-                Picasso.with(this).load(picUri).into(addImage);
-//                try {
-//                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), contentURI);
-//                    String path = saveImage(bitmap);
-//                    Toast.makeText(AddAdmin.this, "Image Saved!", Toast.LENGTH_SHORT).show();
-//                    addImage.setImageBitmap(bitmap);
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                    Toast.makeText(AddAdmin.this, "Failed!", Toast.LENGTH_SHORT).show();
-//                }
+                Picasso.with(this).load(FilePathUri).into(addImage);
+
+                try {
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), FilePathUri);
+//                    addImage.setImageBitmap(BitmapFactory.decodeStream(
+//                            getContentResolver().openInputStream(data.getData())));
+                    addImage.setImageBitmap(bitmap);
+                }
+                catch (IOException e) {
+
+                    e.printStackTrace();
+                }
             }
 
         } else if (requestCode == CAMERA) {
@@ -222,45 +231,30 @@ public class AddAdmin extends AppCompatActivity {
         return mime.getExtensionFromMimeType(contentResolver.getType(uri));
     }
 
-    private void uploadFile(){
-        if (picUri != null){
-            StorageReference fileReference = mStorageRef.child(System.currentTimeMillis() + "." + getFileExtension(picUri));
-            mUploadTask = fileReference.putFile(picUri)
+    public void uploadFile() {
+        if (FilePathUri != null) {
+            progressDialog.setTitle("Image is Uploading...");
+            progressDialog.show();
+            StorageReference storageReference2 = mStorageRef.child(System.currentTimeMillis() + "." + getFileExtension(FilePathUri));
+            storageReference2.putFile(FilePathUri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            Handler handler = new Handler();
-                            handler.postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                }
-                            }, 500);
 
-                            Toast.makeText(AddAdmin.this, "Upload successful", Toast.LENGTH_LONG).show();
-                            Upload upload = new Upload(nama.getText().toString().trim(),
-                                    taskSnapshot.getMetadata().getReference().getDownloadUrl().toString(),
-                                    Integer.parseInt(harga.getText().toString()));
-                            String uploadId = mDatabaseRef.push().getKey();
-                            mDatabaseRef.child(uploadId).setValue(upload);
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(AddAdmin.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    })
-                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                            double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
+                            String TempImageName = nama.getText().toString().trim();
+                            int hargamenu = Integer.parseInt(harga.getText().toString());
+                            progressDialog.dismiss();
+                            Toast.makeText(getApplicationContext(), "Image Uploaded Successfully ", Toast.LENGTH_LONG).show();
+                            @SuppressWarnings("VisibleForTests")
+                            Upload imageUploadInfo = new Upload(TempImageName, taskSnapshot.getUploadSessionUri().toString(), hargamenu);
+                            String ImageUploadId = databaseReference.push().getKey();
+                            databaseReference.child(ImageUploadId).setValue(imageUploadInfo);
                         }
                     });
         } else {
             Toast.makeText(this, "No file selected", Toast.LENGTH_SHORT).show();
         }
     }
-
     public void handlerOnClickBatal(View view) {
         Intent intent = new Intent(this, FiturAdmin.class);
         startActivity(intent);
