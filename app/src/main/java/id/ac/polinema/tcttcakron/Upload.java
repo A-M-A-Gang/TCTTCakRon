@@ -10,25 +10,35 @@ public class Upload {
         this.harga = harga;
     }
 
+    public Upload(String nameImage, int harga) {
+        this.nameImage = nameImage;
+        this.harga = harga;
+    }
+
+    public Upload() {
+    }
+
     public String getNameImage() {
         return nameImage;
     }
 
-//    public void setNameImage(String nameImage) {
-//        this.nameImage = nameImage;
-//    }
+    public void setNameImage(String nameImage) {
+        this.nameImage = nameImage;
+    }
+
     public String getImageUrl() {
         return imageUrl;
     }
 
-//    public void setImageUrl(String imageUrl) {
-//        this.imageUrl = imageUrl;
-//    }
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
     public int getHarga() {
         return harga;
     }
 
-//    public void setHarga(int harga) {
-//        this.harga = harga;
-
+    public void setHarga(int harga) {
+        this.harga = harga;
+    }
 }
