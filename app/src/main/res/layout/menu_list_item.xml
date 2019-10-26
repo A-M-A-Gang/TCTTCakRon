@@ -1,48 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textMakananItem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:text="Nama Makanan"
-        android:textColor="@color/colorBlack"
-        app:layout_constraintStart_toEndOf="@+id/imageViewItem"
-        app:layout_constraintTop_toTopOf="@+id/imageViewItem" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
 
-    <TextView
-        android:id="@+id/textHargaItem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Harga"
-        android:textColor="@color/colorBlack"
-        app:layout_constraintStart_toStartOf="@+id/textMakananItem"
-        app:layout_constraintTop_toBottomOf="@+id/textMakananItem" />
+        <ImageView
+            android:id="@+id/imageViewItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="40dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@android:drawable/sym_def_app_icon" />
 
-    <Button
-        android:id="@+id/buttonDeleteItem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:onClick="handlerOnClickDelete"
-        android:text="Delete"
-        app:layout_constraintStart_toStartOf="@+id/textHargaItem"
-        app:layout_constraintTop_toBottomOf="@+id/textHargaItem" />
+        <TextView
+            android:id="@+id/textMakananItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="44dp"
+            android:text="Nama Makanan"
+            android:textColor="@color/colorBlack"
+            app:layout_constraintStart_toEndOf="@+id/imageViewItem"
+            app:layout_constraintTop_toTopOf="@+id/imageViewItem" />
 
-    <ImageView
-        android:id="@+id/imageViewItem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="40dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/sym_def_app_icon" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/buttonDeleteItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:onClick="handlerOnClickDelete"
+            android:text="Delete"
+            app:layout_constraintStart_toStartOf="@+id/textHargaItem"
+            app:layout_constraintTop_toBottomOf="@+id/textHargaItem" />
+
+        <TextView
+            android:id="@+id/textHargaItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Harga"
+            android:textColor="@color/colorBlack"
+            app:layout_constraintStart_toStartOf="@+id/textMakananItem"
+            app:layout_constraintTop_toBottomOf="@+id/textMakananItem" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

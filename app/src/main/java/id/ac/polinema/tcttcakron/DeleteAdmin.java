@@ -3,6 +3,7 @@ package id.ac.polinema.tcttcakron;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
@@ -12,7 +13,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,24 +32,53 @@ public class DeleteAdmin extends AppCompatActivity {
     TextView nama, harga;
     private List<Upload> menu = new ArrayList<>();
     private RecyclerView mRecyclerView;
+    private MenuDeleteAdapter mAdapter;
+    private List<Upload> menuList;
+    private ProgressBar mProgressBar;
 
     DatabaseReference databaseMenu;
     ListView listViewMenu;
-    List<Upload> menuList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_delete_admin);
+        setContentView(R.layout.activity_menu_list);
+
         mRecyclerView = findViewById(R.id.recycleview_menu);
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        mProgressBar = findViewById(R.id.progress_circle);
+        menuList = new ArrayList<>();
 
         databaseMenu = FirebaseDatabase.getInstance().getReference("Menu");
 
-        image = findViewById(R.id.imageView);
-        nama = findViewById(R.id.textMakanan);
-        harga = findViewById(R.id.textHarga);
-        listViewMenu = findViewById(R.id.listView);
-        menuList = new ArrayList<>();
+        databaseMenu.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()){
+                    Upload menu = postSnapshot.getValue(Upload.class);
+                    menuList.add(menu);
+                }
+                mAdapter = new MenuDeleteAdapter(DeleteAdmin.this, menuList);
+
+                mRecyclerView.setAdapter(mAdapter);
+                mProgressBar.setVisibility(View.INVISIBLE);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(DeleteAdmin.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                mProgressBar.setVisibility(View.INVISIBLE);
+            }
+        });
+
+//        image = findViewById(R.id.imageView);
+//        nama = findViewById(R.id.textMakanan);
+//        harga = findViewById(R.id.textHarga);
+//        listViewMenu = findViewById(R.id.listView);
+//        menuList = new ArrayList<>();
 
 //        new FirebaseDatabaseHelper().readMenu(new FirebaseDatabaseHelper.DataStatus() {
 //            @Override
@@ -91,27 +123,27 @@ public class DeleteAdmin extends AppCompatActivity {
 
     }
 
-    protected void onStart(){
-        super.onStart();
-
-        databaseMenu.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                menuList.clear();
-                for (DataSnapshot menuSnapshot : dataSnapshot.getChildren()){
-                    Upload menu = menuSnapshot.getValue(Upload.class);
-                    menuList.add(menu);
-                }
-                MenuList adapter = new MenuList(DeleteAdmin.this, menuList);
-                listViewMenu.setAdapter(adapter);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
+//    protected void onStart(){
+//        super.onStart();
+//
+//        databaseMenu.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                menuList.clear();
+//                for (DataSnapshot menuSnapshot : dataSnapshot.getChildren()){
+//                    Upload menu = menuSnapshot.getValue(Upload.class);
+//                    menuList.add(menu);
+//                }
+//                MenuList adapter = new MenuList(DeleteAdmin.this, menuList);
+//                listViewMenu.setAdapter(adapter);
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
+//    }
 
     public void handlerOnClickBack(View view) {
         Intent intent = new Intent(this, FiturAdmin.class);
