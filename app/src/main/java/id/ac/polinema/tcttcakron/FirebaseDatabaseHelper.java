@@ -25,7 +25,7 @@ public class FirebaseDatabaseHelper {
 
     public FirebaseDatabaseHelper() {
         mDatabase = FirebaseDatabase.getInstance();
-        mReferenceMenu = mDatabase.getReference("Menu/Makanan");
+        mReferenceMenu = mDatabase.getReference("Menu");
     }
 
     public void readMenu(final DataStatus dataStatus){

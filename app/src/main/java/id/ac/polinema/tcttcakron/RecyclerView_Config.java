@@ -28,10 +28,10 @@ public class RecyclerView_Config {
         private String key;
 
         public MenuItemView(ViewGroup parent){
-            super(LayoutInflater.from(mContext).inflate(R.layout.activity_delete_admin, parent, false));
+            super(LayoutInflater.from(mContext).inflate(R.layout.menu_list_item, parent, false));
 
-            namaMenu = (TextView) itemView.findViewById(R.id.textMakanan);
-            harga = (TextView) itemView.findViewById(R.id.textHarga);
+            namaMenu = (TextView) itemView.findViewById(R.id.textMakananItem);
+            harga = (TextView) itemView.findViewById(R.id.textHargaItem);
         }
 
         public void Bind(Upload upload, String key){

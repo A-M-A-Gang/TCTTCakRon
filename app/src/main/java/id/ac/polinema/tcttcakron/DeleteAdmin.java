@@ -1,5 +1,6 @@
 package id.ac.polinema.tcttcakron;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,8 +11,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,41 +30,47 @@ public class DeleteAdmin extends AppCompatActivity {
     private List<Upload> menu = new ArrayList<>();
     private RecyclerView mRecyclerView;
 
+    DatabaseReference databaseMenu;
+    ListView listViewMenu;
+    List<Upload> menuList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delete_admin);
         mRecyclerView = findViewById(R.id.recycleview_menu);
 
+        databaseMenu = FirebaseDatabase.getInstance().getReference("Menu");
+
         image = findViewById(R.id.imageView);
         nama = findViewById(R.id.textMakanan);
         harga = findViewById(R.id.textHarga);
+        listViewMenu = findViewById(R.id.listView);
+        menuList = new ArrayList<>();
 
-
-
-        new FirebaseDatabaseHelper().readMenu(new FirebaseDatabaseHelper.DataStatus() {
-            @Override
-            public void DataIsLoaded(List<Upload> upload, List<String> keys) {
-                new RecyclerView_Config().setConfig(mRecyclerView, DeleteAdmin.this, menu, keys);
-            }
-
-            @Override
-            public void DataIsInserted() {
-
-            }
-
-            @Override
-            public void DataIsUpdated() {
-
-            }
-
-            @Override
-            public void DataIsDeleted() {
-
-            }
-        });
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference ref = database.getReference("Menu/Makanan");
+//        new FirebaseDatabaseHelper().readMenu(new FirebaseDatabaseHelper.DataStatus() {
+//            @Override
+//            public void DataIsLoaded(List<Upload> upload, List<String> keys) {
+//                new RecyclerView_Config().setConfig(mRecyclerView, DeleteAdmin.this, menu, keys);
+//            }
+//
+//            @Override
+//            public void DataIsInserted() {
+//
+//            }
+//
+//            @Override
+//            public void DataIsUpdated() {
+//
+//            }
+//
+//            @Override
+//            public void DataIsDeleted() {
+//
+//            }
+//        });
+//        FirebaseDatabase database = FirebaseDatabase.getInstance();
+//        DatabaseReference ref = database.getReference("Menu/Makanan");
 
         // Attach a listener to read the data at our posts reference
 //        ref.addValueEventListener(new ValueEventListener() {
@@ -82,6 +89,28 @@ public class DeleteAdmin extends AppCompatActivity {
 //            }
 //        });
 
+    }
+
+    protected void onStart(){
+        super.onStart();
+
+        databaseMenu.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                menuList.clear();
+                for (DataSnapshot menuSnapshot : dataSnapshot.getChildren()){
+                    Upload menu = menuSnapshot.getValue(Upload.class);
+                    menuList.add(menu);
+                }
+                MenuList adapter = new MenuList(DeleteAdmin.this, menuList);
+                listViewMenu.setAdapter(adapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     public void handlerOnClickBack(View view) {
