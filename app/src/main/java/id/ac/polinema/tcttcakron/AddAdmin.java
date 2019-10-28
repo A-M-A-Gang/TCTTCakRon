@@ -173,20 +173,28 @@ public class AddAdmin extends AppCompatActivity {
         if (FilePathUri != null) {
             progressDialog.setTitle("Image is Uploading...");
             progressDialog.show();
-            StorageReference storageReference2 = mStorageRef.child(System.currentTimeMillis() + "." + getFileExtension(FilePathUri));
-            mUploadTask = storageReference2.putFile(FilePathUri)
+            final StorageReference storageReference2 = mStorageRef.child(System.currentTimeMillis() + "." + getFileExtension(FilePathUri));
+            storageReference2.putFile(FilePathUri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-                            String TempImageName = nama.getText().toString().trim();
-                            int hargamenu = Integer.parseInt(harga.getText().toString());
+                        public void onSuccess(final UploadTask.TaskSnapshot taskSnapshot) {
+                            final String TempImageName = nama.getText().toString().trim();
+                            final int hargamenu = Integer.parseInt(harga.getText().toString());
                             progressDialog.dismiss();
                             Toast.makeText(getApplicationContext(), "Image Uploaded Successfully ", Toast.LENGTH_LONG).show();
-                            @SuppressWarnings("VisibleForTests")
-                            Upload imageUploadInfo = new Upload(TempImageName, taskSnapshot.getUploadSessionUri().toString(), hargamenu);
-                            String ImageUploadId = mDatabaseRef.push().getKey();
-                            mDatabaseRef.child(ImageUploadId).setValue(imageUploadInfo);
+                            storageReference2.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    String url = uri.toString();
+                                    Upload imageUploadInfo = new Upload(TempImageName, taskSnapshot.getUploadSessionUri().toString(), hargamenu);
+                                    String ImageUploadId = mDatabaseRef.push().getKey();
+                                    mDatabaseRef.child(ImageUploadId).setValue(imageUploadInfo);
+                                }
+                            });
+//                            @SuppressWarnings("VisibleForTests")
+//                            Upload imageUploadInfo = new Upload(TempImageName, taskSnapshot.getUploadSessionUri().toString(), hargamenu);
+//                            String ImageUploadId = mDatabaseRef.push().getKey();
+//                            mDatabaseRef.child(ImageUploadId).setValue(imageUploadInfo);
                         }
                     });
         } else {
@@ -198,3 +206,4 @@ public class AddAdmin extends AppCompatActivity {
         startActivity(intent);
     }
 }
+
