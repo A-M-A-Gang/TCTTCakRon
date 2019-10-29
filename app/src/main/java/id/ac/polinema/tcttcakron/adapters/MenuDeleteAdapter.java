@@ -1,6 +1,7 @@
 package id.ac.polinema.tcttcakron.adapters;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,7 +39,7 @@ public class MenuDeleteAdapter extends RecyclerView.Adapter<MenuDeleteAdapter.Im
         Upload uploadCurrent = mUploads.get(position);
         holder.nama.setText(uploadCurrent.getNameImage());
         holder.harga.setText(String.valueOf(uploadCurrent.getHarga()));
-        Picasso.with(mContext).load(uploadCurrent.getImageUrl()).fit().centerCrop().into(holder.image);
+        Picasso.with(mContext).load(Uri.parse(uploadCurrent.getImageUrl())).fit().centerCrop().into(holder.image);
     }
 
     @Override
