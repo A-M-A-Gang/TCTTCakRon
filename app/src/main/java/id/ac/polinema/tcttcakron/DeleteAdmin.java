@@ -35,12 +35,12 @@ public class DeleteAdmin extends AppCompatActivity {
     private List<Upload> menu = new ArrayList<>();
     private RecyclerView mRecyclerView;
     private MenuDeleteAdapter mAdapter;
-    private List<Upload> menuList;
     private ProgressBar mProgressBar;
 
     DatabaseReference databaseMenu;
-    ListView listViewMenu;
+    private List<Upload> menuList;
 
+    ListView listViewMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
