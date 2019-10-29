@@ -26,6 +26,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import id.ac.polinema.tcttcakron.adapters.MenuDeleteAdapter;
+
 public class DeleteAdmin extends AppCompatActivity {
     final Context context = this;
     ImageView image;

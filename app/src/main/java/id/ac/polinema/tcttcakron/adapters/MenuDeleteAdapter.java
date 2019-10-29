@@ -1,4 +1,4 @@
-package id.ac.polinema.tcttcakron;
+package id.ac.polinema.tcttcakron.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -13,6 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+
+import id.ac.polinema.tcttcakron.R;
+import id.ac.polinema.tcttcakron.Upload;
 
 public class MenuDeleteAdapter extends RecyclerView.Adapter<MenuDeleteAdapter.ImageViewHolder> {
     private Context mContext;
