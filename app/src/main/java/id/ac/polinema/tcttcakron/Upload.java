@@ -10,11 +10,6 @@ public class Upload {
         this.harga = harga;
     }
 
-    public Upload(String nameImage, int harga) {
-        this.nameImage = nameImage;
-        this.harga = harga;
-    }
-
     public Upload() {
     }
 

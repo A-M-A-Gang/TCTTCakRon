@@ -24,6 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import id.ac.polinema.tcttcakron.adapters.MenuDeleteAdapter;
 import id.ac.polinema.tcttcakron.adapters.MenuUpdateAdapter;
 import id.ac.polinema.tcttcakron.models.MenuUpdate;
 
@@ -33,7 +34,8 @@ public class UpdateAdmin extends AppCompatActivity {
     List<Upload> listMenu = new ArrayList<>();
     private List<Upload> menu = new ArrayList<>();
     private RecyclerView mRecyclerView;
-    private UpdateAdminAdapter mAdapter;
+    private MenuUpdateAdapter mAdapter;
+//    private MenuDeleteAdapter mAdapter;
     private List<Upload> menuListUpdate;
     private ProgressBar mProgressBar;
     //instansiasi Recyclerview
@@ -46,13 +48,13 @@ public class UpdateAdmin extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu_list);
+        setContentView(R.layout.activity_update_list);
 
-        mRecyclerView = findViewById(R.id.recycleview_menu);
+        mRecyclerView = findViewById(R.id.recycleview_menulist);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        mProgressBar = findViewById(R.id.progress_circle);
+        mProgressBar = findViewById(R.id.progress_circle2);
         menuListUpdate = new ArrayList<>();
 
         databaseMenu = FirebaseDatabase.getInstance().getReference("Menu");
@@ -70,9 +72,12 @@ public class UpdateAdmin extends AppCompatActivity {
                     Upload menu = postSnapshot.getValue(Upload.class);
                     menuListUpdate.add(menu);
                 }
-                MenuUpdateAdapter superHeroAdapter = new MenuUpdateAdapter(UpdateAdmin.this,menuListUpdate);
 
-                mRecyclerView.setAdapter(superHeroAdapter);
+                mAdapter = new MenuUpdateAdapter(UpdateAdmin.this, menuListUpdate);
+
+//                MenuUpdateAdapter superHeroAdapter = new MenuUpdateAdapter(UpdateAdmin.this,menuListUpdate);
+
+                mRecyclerView.setAdapter(mAdapter);
                 mProgressBar.setVisibility(View.INVISIBLE);
             }
 
@@ -117,7 +122,6 @@ public class UpdateAdmin extends AppCompatActivity {
 //                    Upload menu = postSnapshot.getValue(Upload.class);
 //                    menuListUpdate.add(menu);
 //                }
-//                UpdateAdminAdapter superHeroAdapter = new UpdateAdminAdapter(menuListUpdate);
 //                //set adapter dan layoutmanager
 //                rvMenu.setAdapter(superHeroAdapter);
 //                rvMenu.setLayoutManager(new LinearLayoutManager(UpdateAdmin.this));
@@ -137,7 +141,6 @@ public class UpdateAdmin extends AppCompatActivity {
 //        listMenu.add(menu);
 //        //membuat object hero baru
 //        //Instansiasi Adapter
-//        UpdateAdminAdapter superHeroAdapter = new UpdateAdminAdapter(listMenu);
 //        //set adapter dan layoutmanager
 //        rvMenu.setAdapter(superHeroAdapter);
 //        rvMenu.setLayoutManager(new LinearLayoutManager(this));
@@ -155,7 +158,6 @@ public class UpdateAdmin extends AppCompatActivity {
 //                    Upload menu = postSnapshot.getValue(Upload.class);
 //                    menuListUpdate.add(menu);
 //                }
-//                mAdapter = new UpdateAdminAdapter(menuListUpdate);
 //
 //                mRecyclerView.setAdapter(mAdapter);
 //                mProgressBar.setVisibility(View.INVISIBLE);

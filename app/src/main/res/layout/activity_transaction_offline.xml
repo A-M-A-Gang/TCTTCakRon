@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,281 +9,128 @@
 
     <TextView
         android:id="@+id/textoffline"
-        android:layout_width="wrap_content"
+        android:layout_width="213dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:text="Transaction Offline"
-        android:textColor="@color/colorBlack"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="102dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="96dp"
         android:fontFamily="sans-serif-medium"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="Transaction Offline"
+        android:textAlignment="center"
+        android:textColor="@color/colorBlack"
+        android:textSize="20dp" />
 
     <TextView
         android:id="@+id/texttittlenama"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_below="@+id/textoffline"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="22dp"
         android:text="Nama Pelanggan"
         android:textColor="@color/colorBlack"
-        android:textSize="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textoffline" />
+        android:textSize="20dp" />
 
-    <CheckedTextView
-        android:id="@+id/checkednamapelanggan"
-        android:layout_width="213dp"
-        android:layout_height="22dp"
-        android:layout_marginStart="24dp"
-        android:text=""
-        app:layout_constraintBottom_toBottomOf="@+id/texttittlenama"
-        app:layout_constraintStart_toEndOf="@+id/texttittlenama"
-        app:layout_constraintTop_toTopOf="@+id/texttittlenama" />
+    <LinearLayout
+        android:id="@+id/main_menu_wrapper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/texttittlenama"
+        android:layout_marginTop="11dp"
+        android:orientation="horizontal">
 
-    <CheckedTextView
-        android:id="@+id/checkednamapelanggan2"
-        android:layout_width="187dp"
-        android:layout_height="21dp"
-        android:text=""
-        app:layout_constraintBottom_toBottomOf="@+id/textharga1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.826"
-        app:layout_constraintStart_toEndOf="@+id/textharga1"
-        app:layout_constraintTop_toTopOf="@+id/textharga1" />
+        <Spinner
+            android:id="@+id/spinnerMakanan"
 
-    <CheckedTextView
-        android:id="@+id/checkednamapelanggan3"
-        android:layout_width="186dp"
-        android:layout_height="21dp"
-        android:layout_marginStart="20dp"
-        android:text=""
-        app:layout_constraintBottom_toBottomOf="@+id/textharga2"
-        app:layout_constraintStart_toEndOf="@+id/textharga2"
-        app:layout_constraintTop_toTopOf="@+id/textharga2"
-        app:layout_constraintVertical_bias="1.0" />
+            android:layout_width="wrap_content"
+            android:layout_height="29dp"
+            android:layout_weight="2"
+            android:gravity="center_horizontal"/>
 
-    <CheckedTextView
-        android:id="@+id/checkednamapelanggan4"
-        android:layout_width="187dp"
-        android:layout_height="21dp"
-        android:layout_marginStart="20dp"
-        android:text=""
-        app:layout_constraintBottom_toBottomOf="@+id/textharga3"
-        app:layout_constraintStart_toEndOf="@+id/textharga3"
-        app:layout_constraintTop_toTopOf="@+id/textharga3"
-        app:layout_constraintVertical_bias="1.0" />
+        <Spinner
+            android:id="@+id/spinnerJumlah"
+            android:layout_width="5dp"
+            android:layout_height="29dp"
+            android:layout_marginStart="4dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal" />
 
-    <CheckedTextView
-        android:id="@+id/checkednamapelanggan6"
-        android:layout_width="187dp"
-        android:layout_height="21dp"
-        android:layout_marginStart="20dp"
-        android:text=""
-        app:layout_constraintBottom_toBottomOf="@+id/textharga4"
-        app:layout_constraintStart_toEndOf="@+id/textharga4"
-        app:layout_constraintTop_toTopOf="@+id/textharga4"
-        app:layout_constraintVertical_bias="1.0" />
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="29dp"
+            android:layout_marginStart="4dp"
+            android:layout_weight="2"
+            android:gravity="center_horizontal"
+            android:text="Harga"
+            android:textAlignment="center" />
 
-    <CheckedTextView
-        android:id="@+id/checkednamapelanggan7"
-        android:layout_width="187dp"
-        android:layout_height="21dp"
-        android:layout_marginStart="20dp"
-        android:text=""
-        app:layout_constraintBottom_toBottomOf="@+id/textharga5"
-        app:layout_constraintStart_toEndOf="@+id/textharga5"
-        app:layout_constraintTop_toTopOf="@+id/textharga5"
-        app:layout_constraintVertical_bias="1.0" />
+        <Button
+            android:id="@+id/delete_list_menu"
+            android:layout_width="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:gravity="center_horizontal"
+            android:text="Delete" />
 
-    <CheckedTextView
-        android:id="@+id/checkednamapelanggan8"
-        android:layout_width="187dp"
-        android:layout_height="21dp"
-        android:layout_marginStart="20dp"
-        android:text=""
-        app:layout_constraintBottom_toBottomOf="@+id/textharga6"
-        app:layout_constraintStart_toEndOf="@+id/textharga6"
-        app:layout_constraintTop_toTopOf="@+id/textharga6"
-        app:layout_constraintVertical_bias="1.0" />
+    </LinearLayout>
 
-    <CheckedTextView
+    <EditText
         android:id="@+id/checkednamapelanggan9"
-        android:layout_width="111dp"
-        android:layout_height="16dp"
+        android:layout_width="190dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/textoffline"
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="24dp"
         android:layout_marginBottom="8dp"
-        android:text=""
-        app:layout_constraintBottom_toTopOf="@+id/button7"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.428"
-        app:layout_constraintStart_toEndOf="@+id/textView3" />
-
-    <TextView
-        android:id="@+id/textnama1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
-        android:text="Nama Makanan"
-        android:textColor="@color/colorBlack"
-        app:layout_constraintStart_toStartOf="@+id/texttittlenama"
-        app:layout_constraintTop_toBottomOf="@+id/texttittlenama" />
-
-    <TextView
-        android:id="@+id/textnama2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Nama Makanan"
-        android:textColor="@color/colorBlack"
-        app:layout_constraintEnd_toEndOf="@+id/textnama1"
-        app:layout_constraintStart_toStartOf="@+id/textnama1"
-        app:layout_constraintTop_toBottomOf="@+id/textnama1" />
-
-    <TextView
-        android:id="@+id/textnama3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Nama Makanan"
-        android:textColor="@color/colorBlack"
-        app:layout_constraintEnd_toEndOf="@+id/textnama2"
-        app:layout_constraintStart_toStartOf="@+id/textnama2"
-        app:layout_constraintTop_toBottomOf="@+id/textnama2" />
-
-    <TextView
-        android:id="@+id/textnama4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Nama Makanan"
-        android:textColor="@color/colorBlack"
-        app:layout_constraintEnd_toEndOf="@+id/textnama3"
-        app:layout_constraintStart_toStartOf="@+id/textnama3"
-        app:layout_constraintTop_toBottomOf="@+id/textnama3" />
-
-    <TextView
-        android:id="@+id/textnama5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Nama Makanan"
-        android:textColor="@color/colorBlack"
-        app:layout_constraintEnd_toEndOf="@+id/textnama4"
-        app:layout_constraintStart_toStartOf="@+id/textnama4"
-        app:layout_constraintTop_toBottomOf="@+id/textnama4" />
-
-    <TextView
-        android:id="@+id/textnama6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Nama Makanan"
-        android:textColor="@color/colorBlack"
-        app:layout_constraintEnd_toEndOf="@+id/textnama5"
-        app:layout_constraintStart_toStartOf="@+id/textnama5"
-        app:layout_constraintTop_toBottomOf="@+id/textnama5" />
-
-    <TextView
-        android:id="@+id/textharga1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:fontFamily="sans-serif-medium"
-        android:text="Harga"
-        app:layout_constraintBottom_toBottomOf="@+id/textnama1"
-        app:layout_constraintStart_toEndOf="@+id/textnama1"
-        app:layout_constraintTop_toTopOf="@+id/textnama1" />
-
-    <TextView
-        android:id="@+id/textharga2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:fontFamily="sans-serif-medium"
-        android:text="Harga"
-        app:layout_constraintBottom_toBottomOf="@+id/textnama2"
-        app:layout_constraintStart_toEndOf="@+id/textnama2"
-        app:layout_constraintTop_toTopOf="@+id/textnama2" />
-
-    <TextView
-        android:id="@+id/textharga3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:fontFamily="sans-serif-medium"
-        android:text="Harga"
-        app:layout_constraintBottom_toBottomOf="@+id/textnama3"
-        app:layout_constraintStart_toEndOf="@+id/textnama3"
-        app:layout_constraintTop_toTopOf="@+id/textnama3" />
-
-    <TextView
-        android:id="@+id/textharga4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:fontFamily="sans-serif-medium"
-        android:text="Harga"
-        app:layout_constraintBottom_toBottomOf="@+id/textnama4"
-        app:layout_constraintStart_toEndOf="@+id/textnama4"
-        app:layout_constraintTop_toTopOf="@+id/textnama4" />
-
-    <TextView
-        android:id="@+id/textharga5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:fontFamily="sans-serif-medium"
-        android:text="Harga"
-        app:layout_constraintBottom_toBottomOf="@+id/textnama5"
-        app:layout_constraintStart_toEndOf="@+id/textnama5"
-        app:layout_constraintTop_toTopOf="@+id/textnama5" />
-
-    <TextView
-        android:id="@+id/textharga6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:fontFamily="sans-serif-medium"
-        android:text="Harga"
-        app:layout_constraintBottom_toBottomOf="@+id/textnama6"
-        app:layout_constraintStart_toEndOf="@+id/textnama6"
-        app:layout_constraintTop_toTopOf="@+id/textnama6" />
+        android:text="" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_marginStart="232dp"
+        android:layout_marginBottom="102dp"
         android:fontFamily="sans-serif-medium"
         android:text="Total :"
-        android:textColor="@color/colorBlack"
-        app:layout_constraintBottom_toTopOf="@+id/button7"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/checkednamapelanggan9"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/buttonBack"
-        android:layout_width="85dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="16dp"
-        android:onClick="handlerOnClickBack"
-        android:text="Kembali"
-        android:theme="@style/buttonstyle"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:textColor="@color/colorBlack" />
 
     <Button
         android:id="@+id/button7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
         android:text="Pesan"
-        android:theme="@style/buttonstyle"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:theme="@style/buttonstyle" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/buttonBack"
+        android:layout_width="85dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="670dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="16dp"
+        android:onClick="handlerOnClickBack"
+        android:text="Kembali"
+        android:theme="@style/buttonstyle" />
+
+    <Button
+        android:id="@+id/add_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/main_menu_wrapper"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:text="Tambah" />
+
+</RelativeLayout>
