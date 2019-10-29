@@ -27,6 +27,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -173,6 +174,30 @@ public class AddAdmin extends AppCompatActivity {
         if (FilePathUri != null) {
             progressDialog.setTitle("Image is Uploading...");
             progressDialog.show();
+            uploadTask = storageReference.putFile(FilePathUri);
+
+            Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                @Override
+                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                    if (!task.isSuccessful()) {
+                        throw task.getException();
+                    }
+
+                    // Continue with the task to get the download URL
+                    return ref.getDownloadUrl();
+                }
+            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                @Override
+                public void onComplete(@NonNull Task<Uri> task) {
+                    if (task.isSuccessful()) {
+                        Uri downloadUri = task.getResult();
+                    } else {
+                        // Handle failures
+                        // ...
+                    }
+                }
+            });
+
             final StorageReference storageReference2 = mStorageRef.child(System.currentTimeMillis() + "." + getFileExtension(FilePathUri));
             storageReference2.putFile(FilePathUri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -182,19 +207,19 @@ public class AddAdmin extends AppCompatActivity {
                             final int hargamenu = Integer.parseInt(harga.getText().toString());
                             progressDialog.dismiss();
                             Toast.makeText(getApplicationContext(), "Image Uploaded Successfully ", Toast.LENGTH_LONG).show();
-                            storageReference2.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                @Override
-                                public void onSuccess(Uri uri) {
-                                    String url = uri.toString();
-                                    Upload imageUploadInfo = new Upload(TempImageName, taskSnapshot.getUploadSessionUri().toString(), hargamenu);
-                                    String ImageUploadId = mDatabaseRef.push().getKey();
-                                    mDatabaseRef.child(ImageUploadId).setValue(imageUploadInfo);
-                                }
-                            });
-//                            @SuppressWarnings("VisibleForTests")
-//                            Upload imageUploadInfo = new Upload(TempImageName, taskSnapshot.getUploadSessionUri().toString(), hargamenu);
-//                            String ImageUploadId = mDatabaseRef.push().getKey();
-//                            mDatabaseRef.child(ImageUploadId).setValue(imageUploadInfo);
+//                            storageReference2.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+//                                @Override
+//                                public void onSuccess(Uri uri) {
+//                                    String url = uri.toString();
+//                                    Upload imageUploadInfo = new Upload(TempImageName, taskSnapshot.getUploadSessionUri().toString(), hargamenu);
+//                                    String ImageUploadId = mDatabaseRef.push().getKey();
+//                                    mDatabaseRef.child(ImageUploadId).setValue(imageUploadInfo);
+//                                }
+//                            });
+                            @SuppressWarnings("VisibleForTests")
+                            Upload imageUploadInfo = new Upload(TempImageName, taskSnapshot.getUploadSessionUri().toString(), hargamenu);
+                            String ImageUploadId = mDatabaseRef.push().getKey();
+                            mDatabaseRef.child(ImageUploadId).setValue(imageUploadInfo);
                         }
                     });
         } else {
