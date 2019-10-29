@@ -23,7 +23,6 @@ public class MenuUpdateAdapter extends RecyclerView.Adapter<MenuUpdateAdapter.My
     private Context mContext;
     private List<Upload> mUploads;
 
-
     public MenuUpdateAdapter(Context context, List<Upload> uploads) {
         mContext = context;
         mUploads = uploads;
@@ -31,28 +30,24 @@ public class MenuUpdateAdapter extends RecyclerView.Adapter<MenuUpdateAdapter.My
 
     @NonNull
     @Override
-    public MenuUpdateAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Context context = parent.getContext();
-        LayoutInflater layoutInflater = LayoutInflater.from(context);
-        View superHeroView = layoutInflater.inflate(R.layout.activity_update_admin,parent,false);
-        MyViewHolder viewHolder = new MyViewHolder(superHeroView);
-        return viewHolder;
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(mContext).inflate(R.layout.menu_list_update, parent, false);
+        return new MyViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MenuUpdateAdapter.MyViewHolder holder, int position) {
-        //ambil satu item hero
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Upload upload = mUploads.get(position);
         holder.name.setText(upload.getNameImage());
         holder.harga.setText(String.valueOf(upload.getHarga()));
         Picasso.with(mContext).load(upload.getImageUrl()).fit().centerCrop().into(holder.imageView);
-        //set text heroName berdasarkan data dari model hero
 
 
     }
     @Override
     public int getItemCount() {
-        return (mUploads != null) ? mUploads.size() : 0;
+//        return (mUploads != null) ? mUploads.size() : 0;
+         return mUploads.size();
 //        return 0;
     }
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -60,7 +55,9 @@ public class MenuUpdateAdapter extends RecyclerView.Adapter<MenuUpdateAdapter.My
         public ImageView imageView;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            name = itemView.findViewById(R.id.itemList);
+            name = itemView.findViewById(R.id.textMakananItem2);
+            harga = itemView.findViewById(R.id.textHargaItem2);
+            imageView = itemView.findViewById(R.id.imageViewItem2);
         }
     }
 }

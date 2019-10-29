@@ -146,7 +146,6 @@ public class DeleteAdmin extends AppCompatActivity {
 //            }
 //        });
 //    }
-
     public void handlerOnClickBack(View view) {
         Intent intent = new Intent(this, FiturAdmin.class);
         startActivity(intent);
