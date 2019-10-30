@@ -39,7 +39,7 @@ public class MenuDeleteAdapter extends RecyclerView.Adapter<MenuDeleteAdapter.Im
         Upload uploadCurrent = mUploads.get(position);
         holder.nama.setText(uploadCurrent.getNameImage());
         holder.harga.setText(String.valueOf(uploadCurrent.getHarga()));
-//        Picasso.with(mContext).load(uploadCurrent.getImageUrl()).fit().centerCrop().into(holder.image);
+        Picasso.with(mContext).load(uploadCurrent.getImageUrl()).fit().centerCrop().into(holder.image);
     }
 
     @Override

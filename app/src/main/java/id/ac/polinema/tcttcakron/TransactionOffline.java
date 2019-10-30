@@ -3,13 +3,16 @@ package id.ac.polinema.tcttcakron;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -28,18 +31,20 @@ public class TransactionOffline extends AppCompatActivity implements AdapterView
     DatabaseReference databaseMenu;
     private List<Upload> menuList;
     private MenuDeleteAdapter mAdapter;
+    private LinearLayout parentLinearLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction_offline);
 
-        Spinner spinner =  findViewById(R.id.spinnerJumlah);
+        Spinner spinner = findViewById(R.id.spinnerJumlah);
         Spinner spinner2 = findViewById(R.id.spinnerMakanan);
-        ArrayAdapter<CharSequence> adapter =  ArrayAdapter.createFromResource(this, R.array.many_arrays, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.many_arrays, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
+        parentLinearLayout = (LinearLayout) findViewById(R.id.parent_linear_layout);
 
         menuList = new ArrayList<>();
         databaseMenu = FirebaseDatabase.getInstance().getReference("Menu");
@@ -48,7 +53,7 @@ public class TransactionOffline extends AppCompatActivity implements AdapterView
         databaseMenu.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()){
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     Upload menu = postSnapshot.getValue(Upload.class);
                     list.add(menu.getNameImage());
                 }
@@ -79,5 +84,12 @@ public class TransactionOffline extends AppCompatActivity implements AdapterView
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
+    }
+
+    public void onAddField(View v) {
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final View rowView = inflater.inflate(R.layout.field_transaction_offline, null);
+        // Add the new row before the add field button.
+        parentLinearLayout.addView(rowView, parentLinearLayout.getChildCount() - 1);
     }
 }
