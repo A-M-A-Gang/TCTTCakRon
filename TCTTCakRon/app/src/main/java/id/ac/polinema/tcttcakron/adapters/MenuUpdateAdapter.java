@@ -2,6 +2,7 @@ package id.ac.polinema.tcttcakron.adapters;
 
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,7 +41,7 @@ public class MenuUpdateAdapter extends RecyclerView.Adapter<MenuUpdateAdapter.My
         Upload upload = mUploads.get(position);
         holder.name.setText(upload.getNameImage());
         holder.harga.setText(String.valueOf(upload.getHarga()));
-        Picasso.with(mContext).load(upload.getImageUrl()).fit().centerCrop().into(holder.imageView);
+        Picasso.with(mContext).load(Uri.parse(upload.getImageUrl())).fit().centerCrop().into(holder.imageView);
 
 
     }

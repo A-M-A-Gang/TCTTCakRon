@@ -179,37 +179,6 @@ public class AddAdmin extends AppCompatActivity {
             final StorageReference storageReference2 = mStorageRef.child(System.currentTimeMillis() + "." + getFileExtension(FilePathUri));
             uploadTask = storageReference2.putFile(FilePathUri);
 
-            ///2
-//            final StorageReference storageReference2 = mStorageRef.child(System.currentTimeMillis() + "." + getFileExtension(FilePathUri));
-//            uploadTask = storageReference2.putFile(FilePathUri);
-//
-//            uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-//                @Override
-//                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-//                    if (!task.isSuccessful()) {
-//                        throw task.getException();
-//                    }
-//
-//                    // Continue with the task to get the download URL
-//                    return storageReference2.getDownloadUrl();
-//                }
-//            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-//                @Override
-//                public void onComplete(@NonNull Task<Uri> task) {
-//                    if (task.isSuccessful()) {
-//                        Uri downloadUri = task.getResult();
-//                        Upload imageUploadInfo = new Upload(nama.getText().toString().trim(), downloadUri.toString(), Integer.parseInt(harga.getText().toString()));
-//                        String ImageUploadId = mDatabaseRef.push().getKey();
-//                        mDatabaseRef.child(ImageUploadId).setValue(imageUploadInfo);
-//                    } else {
-//                        // Handle failures
-//                        // ...
-//                    }
-//                }
-//            });
-
-
-
             storageReference2.putFile(FilePathUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(final UploadTask.TaskSnapshot taskSnapshot) {
@@ -217,15 +186,6 @@ public class AddAdmin extends AppCompatActivity {
                     final int hargamenu = Integer.parseInt(harga.getText().toString());
                     progressDialog.dismiss();
                     Toast.makeText(getApplicationContext(), "Image Uploaded Successfully ", Toast.LENGTH_LONG).show();
-//                    storageReference2.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-//                        @Override
-//                        public void onSuccess(Uri uri) {
-//                            String url = uri.toString();
-//                            Upload imageUploadInfo = new Upload(TempImageName, taskSnapshot.getUploadSessionUri().toString(), hargamenu);
-//                            String ImageUploadId = mDatabaseRef.push().getKey();
-//                            mDatabaseRef.child(ImageUploadId).setValue(imageUploadInfo);
-//                            }
-//                        });
                     Task<Uri> urlTask = taskSnapshot.getStorage().getDownloadUrl();
                     while (!urlTask.isSuccessful());
                     Uri downloadUrl = urlTask.getResult();
@@ -233,11 +193,6 @@ public class AddAdmin extends AppCompatActivity {
                     //Log.d(TAG, "onSuccess: firebase download url: " + downloadUrl.toString()); //use if testing...don't need this line.
                     Upload upload = new Upload(TempImageName,downloadUrl.toString(), hargamenu);
                     mDatabaseRef.child(TempImageName).setValue(upload);
-
-//                        @SuppressWarnings("VisibleForTests")
-//                        Upload imageUploadInfo = new Upload(TempImageName, taskSnapshot.getUploadSessionUri().toString(), hargamenu);
-//                        String ImageUploadId = storageReference2.getDownloadUrl().toString();
-//                        mDatabaseRef.child(TempImageName    ).setValue(imageUploadInfo);
                     }
                 })
             .addOnFailureListener(new OnFailureListener() {
