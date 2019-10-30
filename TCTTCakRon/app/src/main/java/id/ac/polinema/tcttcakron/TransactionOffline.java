@@ -32,6 +32,9 @@ public class TransactionOffline extends AppCompatActivity implements AdapterView
     private List<Upload> menuList;
     private MenuDeleteAdapter mAdapter;
     private LinearLayout parentLinearLayout;
+    ArrayAdapter<String> adapter2;
+    Spinner spinner2;
+    ArrayList<String> menList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +42,7 @@ public class TransactionOffline extends AppCompatActivity implements AdapterView
         setContentView(R.layout.activity_transaction_offline);
 
         Spinner spinner = findViewById(R.id.spinnerJumlah);
-        Spinner spinner2 = findViewById(R.id.spinnerMakanan);
+        spinner2 = findViewById(R.id.spinnerMakanan);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.many_arrays, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
@@ -48,14 +51,17 @@ public class TransactionOffline extends AppCompatActivity implements AdapterView
 
         menuList = new ArrayList<>();
         databaseMenu = FirebaseDatabase.getInstance().getReference("Menu");
-        final List<String> list = new ArrayList<String>();
+        menList = new ArrayList<>();
+//        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter<String>.createFromResource(this, android.R.layout.simple_spinner_dropdown_item,menList);
+        adapter2 = new ArrayAdapter<String>(TransactionOffline.this, android.R.layout.simple_spinner_dropdown_item,menList);
+        final List<String> menList = new ArrayList<String>();
 
         databaseMenu.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     Upload menu = postSnapshot.getValue(Upload.class);
-                    list.add(menu.getNameImage());
+                    menList.add(menu.getNameImage().toString());
                 }
             }
 
@@ -64,7 +70,7 @@ public class TransactionOffline extends AppCompatActivity implements AdapterView
                 Toast.makeText(TransactionOffline.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, list);
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, menList);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner2.setAdapter(dataAdapter);
         spinner2.setOnItemSelectedListener(this);
