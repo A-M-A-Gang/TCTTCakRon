@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Gradle: com.mcxiaoke.next:core:1.5.3@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/94aefbe9e652834e498ace31dd9eee09/core-1.5.3/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/94aefbe9e652834e498ace31dd9eee09/core-1.5.3/res" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.mcxiaoke.next/core/1.5.3/f20b6da378995ecfa476fdcdb85af318c8f7b51e/core-1.5.3-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.mcxiaoke.next/core/1.5.3/6fd3b2c1142e7b2f4f09aba7c24c10a130fb7d76/core-1.5.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

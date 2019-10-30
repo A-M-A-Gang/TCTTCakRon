@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Gradle: com.mcxiaoke.next:ui:1.5.3@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b2a7c4dc1ceded7b039c53c4a60c8284/jetified-ui-1.5.3/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/b2a7c4dc1ceded7b039c53c4a60c8284/jetified-ui-1.5.3/res" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.mcxiaoke.next/ui/1.5.3/dc5b569f83cd1121d5e0b143ec8d21b32ddcae3b/ui-1.5.3-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.mcxiaoke.next/ui/1.5.3/82523aeefab6cf9b224cee54f4e57ff4b777afc9/ui-1.5.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
