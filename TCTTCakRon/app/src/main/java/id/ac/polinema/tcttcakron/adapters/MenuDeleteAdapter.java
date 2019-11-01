@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -39,7 +41,8 @@ public class MenuDeleteAdapter extends RecyclerView.Adapter<MenuDeleteAdapter.Im
         Upload uploadCurrent = mUploads.get(position);
         holder.nama.setText(uploadCurrent.getNameImage());
         holder.harga.setText(String.valueOf(uploadCurrent.getHarga()));
-        Picasso.with(mContext).load(uploadCurrent.getImageUrl()).fit().centerCrop().into(holder.image);
+//        Picasso.with(mContext).load(uploadCurrent.getImageUrl()).fit().centerCrop().into(holder.image);
+        Glide.with(mContext).load(uploadCurrent.getImageUrl()).apply(new RequestOptions().centerCrop().override(500, 500)).into(holder.image);
     }
 
     @Override
