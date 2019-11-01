@@ -2,7 +2,7 @@
     <string name="app_name">TCTTCak Ron</string>
     <string name="how_many">Berapa Banyak</string>
 
-    <string-array name="many_arrays">
+    <string-array name="numbers">
         <item>1</item>
         <item>2</item>
         <item>3</item>
@@ -12,11 +12,16 @@
         <item>7</item>
         <item>8</item>
         <item>9</item>
-        <item>0</item>
+        <item>10</item>
+        <item>...</item>
     </string-array>
 
     <string-array name="nama_makanan">
 
+    </string-array>
+
+    <string-array name="none">
+        <item> </item>
     </string-array>
 
     <!-- TODO: Remove or change this placeholder text -->
