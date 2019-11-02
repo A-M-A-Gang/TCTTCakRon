@@ -38,11 +38,10 @@ public class TransactionOffline extends AppCompatActivity implements AdapterView
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction_offline);
-
         makanan = findViewById(R.id.makanan_spinner);
         makanan2 = findViewById(R.id.makanan_spinner2);
         jumlah = findViewById(R.id.number_spinner);
-        parentLinearLayout = findViewById(R.id.parent_linear_layout);
+        parentLinearLayout =  findViewById(R.id.parent_linear_layout);
 
 //        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter<String>.createFromResource(this, android.R.layout.simple_spinner_dropdown_item,menList);
 
@@ -65,7 +64,6 @@ public class TransactionOffline extends AppCompatActivity implements AdapterView
                 Toast.makeText(TransactionOffline.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
     public void handlerOnClickBack(View view) {
@@ -89,24 +87,24 @@ public class TransactionOffline extends AppCompatActivity implements AdapterView
         final View rowView = inflater.inflate(R.layout.field_transaction_offline, null);
         // Add the new row before the add field button.
         parentLinearLayout.addView(rowView, parentLinearLayout.getChildCount() - 1);
-        databaseMenu.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                    Upload menu = postSnapshot.getValue(Upload.class);
-                    menuList.add(menu.getNameImage());
-                    ArrayAdapter<String> dataAdapter = new ArrayAdapter(TransactionOffline.this, android.R.layout.simple_spinner_item, menuList);
-                    dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    makanan2.setAdapter(dataAdapter);
+//        databaseMenu.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+//                    Upload menu = postSnapshot.getValue(Upload.class);
+//                    menuList.add(menu.getNameImage());
+//                    ArrayAdapter<String> dataAdapter = new ArrayAdapter(TransactionOffline.this, android.R.layout.simple_spinner_item, menuList);
+//                    dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//                    makanan2.setAdapter(dataAdapter);
 //                    spinner2.setOnItemSelectedListener(this);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(TransactionOffline.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//                Toast.makeText(TransactionOffline.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 
     public void onDelete(View view) {
