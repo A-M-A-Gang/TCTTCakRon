@@ -2,18 +2,20 @@ package id.ac.polinema.tcttcakron;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -25,23 +27,41 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import id.ac.polinema.tcttcakron.adapters.MenuDeleteAdapter;
+import id.ac.polinema.tcttcakron.adapters.TransactionOfflineAdapter;
 
-public class TransactionOffline extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class TransactionOffline extends AppCompatActivity {
     DatabaseReference databaseMenu = FirebaseDatabase.getInstance().getReference("Menu");
+    private TransactionOfflineAdapter mAdapter;
     List<String> menuList = new ArrayList<String>();
-    private MenuDeleteAdapter mAdapter;
     private LinearLayout parentLinearLayout;
+    private RecyclerView mRecyclerView;
+    private ProgressBar mProgressBar;
+    private List<Upload> listMenu;
     Spinner makanan, makanan2, jumlah;
+    TextView amount;
+    int counter = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction_offline);
-        makanan = findViewById(R.id.makanan_spinner);
+        RelativeLayout placeholder = findViewById(R.id.list_layout_tr_off);
+        LayoutInflater inflate = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        RelativeLayout holder = (RelativeLayout) inflate.inflate(R.layout.activity_menu_list, null);
+        placeholder.addView(holder);
+
+        mRecyclerView = findViewById(R.id.recycleview_menu);
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        mProgressBar = findViewById(R.id.progress_circle);
+
         makanan2 = findViewById(R.id.makanan_spinner2);
         jumlah = findViewById(R.id.number_spinner);
-        parentLinearLayout =  findViewById(R.id.parent_linear_layout);
+
+        amount = findViewById(R.id.quantity_menu);
+
+        listMenu = new ArrayList<>();
 
 //        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter<String>.createFromResource(this, android.R.layout.simple_spinner_dropdown_item,menList);
 
@@ -51,17 +71,17 @@ public class TransactionOffline extends AppCompatActivity implements AdapterView
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     Upload menu = postSnapshot.getValue(Upload.class);
-                    menuList.add(menu.getNameImage());
-                    ArrayAdapter<String> dataAdapter = new ArrayAdapter(TransactionOffline.this, android.R.layout.simple_spinner_item, menuList);
-                    dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    makanan.setAdapter(dataAdapter);
-//                    spinner2.setOnItemSelectedListener(this);
+                    listMenu.add(menu);
                 }
+                mAdapter = new TransactionOfflineAdapter(TransactionOffline.this, listMenu);
+                mRecyclerView.setAdapter(mAdapter);
+                mProgressBar.setVisibility(View.INVISIBLE);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Toast.makeText(TransactionOffline.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                mProgressBar.setVisibility(View.INVISIBLE);
             }
         });
     }
@@ -69,17 +89,6 @@ public class TransactionOffline extends AppCompatActivity implements AdapterView
     public void handlerOnClickBack(View view) {
         Intent intent = new Intent(this, FiturAdmin.class);
         startActivity(intent);
-    }
-
-    @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        String text = adapterView.getItemAtPosition(i).toString();
-        Toast.makeText(adapterView.getContext(), text, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
-
     }
 
     public void onAddField(View v) {
@@ -110,4 +119,6 @@ public class TransactionOffline extends AppCompatActivity implements AdapterView
     public void onDelete(View view) {
         parentLinearLayout.removeView((View) view.getParent());
     }
+
+
 }
