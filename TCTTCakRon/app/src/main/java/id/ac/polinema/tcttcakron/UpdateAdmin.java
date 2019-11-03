@@ -10,9 +10,11 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -48,13 +50,17 @@ public class UpdateAdmin extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_update_list);
+        setContentView(R.layout.activity_update_admin);
+        RelativeLayout placeholder = findViewById(R.id.list_layout_update);
+        LayoutInflater inflate = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        RelativeLayout holder = (RelativeLayout) inflate.inflate(R.layout.activity_menu_list, null);
+        placeholder.addView(holder);
 
-        mRecyclerView = findViewById(R.id.recycleview_menulist);
+        mRecyclerView = findViewById(R.id.recycleview_menu);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        mProgressBar = findViewById(R.id.progress_circle2);
+        mProgressBar = findViewById(R.id.progress_circle);
         menuListUpdate = new ArrayList<>();
 
         databaseMenu = FirebaseDatabase.getInstance().getReference("Menu");

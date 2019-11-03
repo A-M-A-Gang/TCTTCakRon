@@ -1,7 +1,6 @@
 package id.ac.polinema.tcttcakron.adapters;
 
 import android.content.Context;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -32,7 +30,7 @@ public class MenuDeleteAdapter extends RecyclerView.Adapter<MenuDeleteAdapter.Im
     @NonNull
     @Override
     public ImageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(mContext).inflate(R.layout.menu_list_item, parent, false);
+        View v = LayoutInflater.from(mContext).inflate(R.layout.menu_list_delete, parent, false);
         return new ImageViewHolder(v);
     }
 

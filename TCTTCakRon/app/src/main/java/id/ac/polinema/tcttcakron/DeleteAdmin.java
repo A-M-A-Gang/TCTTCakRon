@@ -10,10 +10,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,7 +47,11 @@ public class DeleteAdmin extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu_list);
+        setContentView(R.layout.activity_delete_admin);
+        RelativeLayout placeholder = findViewById(R.id.list_layout_delete);
+        LayoutInflater inflate = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        RelativeLayout holder = (RelativeLayout) inflate.inflate(R.layout.activity_menu_list, null);
+        placeholder.addView(holder);
 
         mRecyclerView = findViewById(R.id.recycleview_menu);
         mRecyclerView.setHasFixedSize(true);

@@ -27,7 +27,7 @@ public class MenuList extends ArrayAdapter<Upload> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         LayoutInflater inflater = context.getLayoutInflater();
-        View listViewItem = inflater.inflate(R.layout.menu_list_item, null, true);
+        View listViewItem = inflater.inflate(R.layout.menu_list_delete, null, true);
 
         TextView namaMakanan = (TextView) listViewItem.findViewById(R.id.textMakananItem);
         TextView harga = (TextView) listViewItem.findViewById(R.id.textHargaItem);

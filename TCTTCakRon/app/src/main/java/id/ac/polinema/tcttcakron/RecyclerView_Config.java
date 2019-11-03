@@ -28,7 +28,7 @@ public class RecyclerView_Config {
         private String key;
 
         public MenuItemView(ViewGroup parent){
-            super(LayoutInflater.from(mContext).inflate(R.layout.menu_list_item, parent, false));
+            super(LayoutInflater.from(mContext).inflate(R.layout.menu_list_delete, parent, false));
 
             namaMenu = (TextView) itemView.findViewById(R.id.textMakananItem);
             harga = (TextView) itemView.findViewById(R.id.textHargaItem);
