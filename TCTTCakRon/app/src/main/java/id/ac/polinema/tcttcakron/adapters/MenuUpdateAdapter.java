@@ -2,10 +2,12 @@ package id.ac.polinema.tcttcakron.adapters;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,12 +21,15 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import id.ac.polinema.tcttcakron.R;
+import id.ac.polinema.tcttcakron.UpdateAdmin;
+import id.ac.polinema.tcttcakron.UpdateMenuAdmin;
 import id.ac.polinema.tcttcakron.Upload;
 import id.ac.polinema.tcttcakron.models.MenuUpdate;
 
 public class MenuUpdateAdapter extends RecyclerView.Adapter<MenuUpdateAdapter.MyViewHolder> {
     private Context mContext;
     private List<Upload> mUploads;
+    UpdateMenuAdmin updateMenuAdmin;
 
     public MenuUpdateAdapter(Context context, List<Upload> uploads) {
         mContext = context;
@@ -40,10 +45,20 @@ public class MenuUpdateAdapter extends RecyclerView.Adapter<MenuUpdateAdapter.My
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Upload upload = mUploads.get(position);
+        final Upload upload = mUploads.get(position);
         holder.name.setText(upload.getNameImage());
         holder.harga.setText(String.valueOf(upload.getHarga()));
         Glide.with(mContext).load(upload.getImageUrl()).apply(new RequestOptions().centerCrop().override(500, 500)).into(holder.imageView);
+        holder.update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                 Intent intent = new Intent(mContext, UpdateMenuAdmin.class);
+                 intent.putExtra("nama", upload.getNameImage());
+                 intent.putExtra("harga", String.valueOf(upload.getHarga()));
+                 intent.putExtra("image", upload.getImageUrl());
+                 view.getContext().startActivity(intent);
+            }
+        });
     }
     @Override
     public int getItemCount() {
@@ -54,11 +69,13 @@ public class MenuUpdateAdapter extends RecyclerView.Adapter<MenuUpdateAdapter.My
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView name, harga;
         public ImageView imageView;
+        public Button update;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.textMakananItem2);
             harga = itemView.findViewById(R.id.textHargaItem2);
             imageView = itemView.findViewById(R.id.imageViewItem2);
+            update = itemView.findViewById(R.id.buttonUpdateItem);
         }
     }
 }

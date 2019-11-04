@@ -99,6 +99,8 @@ public class UpdateAdmin extends AppCompatActivity {
         startActivity(intent);
     }
     public void handlerOnClickUpdate(View view) {
+//        Intent intent = new Intent(this, UpdateMenuAdmin.class);
+//        startActivity(intent);
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
 
         // set title

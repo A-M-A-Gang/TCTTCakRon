@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UpdateMenuAdmin">
+
+    <TextView
+        android:id="@+id/textJudul2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/common_google_play_services_update_button"
+        android:textColor="@color/colorBlack"
+        android:textSize="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/image_update"
+        android:layout_width="168dp"
+        android:layout_height="166dp"
+        android:layout_marginTop="48dp"
+        app:layout_constraintEnd_toEndOf="@+id/textJudul2"
+        app:layout_constraintStart_toStartOf="@+id/textJudul2"
+        app:layout_constraintTop_toBottomOf="@+id/textJudul2"
+        app:srcCompat="@mipmap/ic_add_image_foreground" />
+
+    <EditText
+        android:id="@+id/nama_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="Nama Makanan"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/image_update"
+        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintStart_toStartOf="@+id/image_update"
+        app:layout_constraintTop_toBottomOf="@+id/image_update" />
+
+    <EditText
+        android:id="@+id/harga_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Harga"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="@+id/nama_update"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/nama_update"
+        app:layout_constraintTop_toBottomOf="@+id/nama_update" />
+
+    <Button
+        android:id="@+id/update_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/common_google_play_services_update_button"
+        app:layout_constraintEnd_toEndOf="@+id/harga_update"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="@+id/harga_update"
+        app:layout_constraintTop_toBottomOf="@+id/harga_update" />
+
+    <Button
+        android:id="@+id/batal_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="30dp"
+        android:onClick="handlerOnClickBatalUpdate"
+        android:text="Batal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
