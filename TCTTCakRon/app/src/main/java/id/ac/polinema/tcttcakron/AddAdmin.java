@@ -136,7 +136,6 @@ public class AddAdmin extends AppCompatActivity {
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent, PICK_IMAGE_REQUEST);
-
     }
 
     @Override
@@ -217,4 +216,3 @@ public class AddAdmin extends AppCompatActivity {
         startActivity(intent);
     }
 }
-
