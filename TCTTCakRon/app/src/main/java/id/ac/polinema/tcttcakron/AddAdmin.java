@@ -92,7 +92,7 @@ public class AddAdmin extends AppCompatActivity {
             public void onClick(View view) {
                 if (mUploadTask != null && mUploadTask.isInProgress()){
                     Toast.makeText(AddAdmin.this, "Upload In Progress", Toast.LENGTH_SHORT).show();
-                }else{
+                } else {
                     uploadFile();
                 }
             }

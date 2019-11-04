@@ -1,6 +1,8 @@
 package id.ac.polinema.tcttcakron.adapters;
 
 import android.content.Context;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -89,6 +91,23 @@ public class TransactionOfflineAdapter extends RecyclerView.Adapter<TransactionO
             amount = itemView.findViewById(R.id.quantity_menu);
             increase = itemView.findViewById(R.id.increase_button);
             decrease = itemView.findViewById(R.id.decrease_button);
+
+            amount.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable editable) {
+
+                }
+            });
         }
 
         public void handlerOnClickDecrease(View view) {
