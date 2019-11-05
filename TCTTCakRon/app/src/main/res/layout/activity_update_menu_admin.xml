@@ -62,6 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="@string/common_google_play_services_update_button"
+        android:onClick="handlerOnClickSubmitUpdate"
         app:layout_constraintEnd_toEndOf="@+id/harga_update"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="@+id/harga_update"

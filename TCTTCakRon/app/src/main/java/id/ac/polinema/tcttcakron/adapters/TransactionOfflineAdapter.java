@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,6 +20,7 @@ import com.bumptech.glide.request.RequestOptions;
 import java.util.List;
 
 import id.ac.polinema.tcttcakron.R;
+import id.ac.polinema.tcttcakron.TransactionOffline;
 import id.ac.polinema.tcttcakron.Upload;
 
 public class TransactionOfflineAdapter extends RecyclerView.Adapter<TransactionOfflineAdapter.ImageViewHolder> {
@@ -67,6 +69,7 @@ public class TransactionOfflineAdapter extends RecyclerView.Adapter<TransactionO
             }
         });
     }
+
     @Override
     public int getItemCount() {
         return mUploads.size();
