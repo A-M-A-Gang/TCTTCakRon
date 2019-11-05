@@ -1,4 +1,4 @@
-package id.ac.polinema.tcttcakron.adapters;
+package id.ac.polinema.ttctcustomer.adapter;
 
 import android.content.Context;
 import android.text.Editable;
@@ -18,15 +18,14 @@ import com.bumptech.glide.request.RequestOptions;
 
 import java.util.List;
 
-import id.ac.polinema.tcttcakron.R;
-import id.ac.polinema.tcttcakron.Upload;
+import id.ac.polinema.ttctcustomer.R;
+import id.ac.polinema.ttctcustomer.Upload;
 
-public class TransactionOfflineAdapter extends RecyclerView.Adapter<TransactionOfflineAdapter.ImageViewHolder> {
+public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ImageViewHolder> {
     private Context mContext;
     private List<Upload> mUploads;
 
-
-    public TransactionOfflineAdapter(Context context, List<Upload> uploads){
+    public CustomerAdapter(Context context, List<Upload> uploads){
         mContext = context;
         mUploads = uploads;
     }
@@ -34,7 +33,7 @@ public class TransactionOfflineAdapter extends RecyclerView.Adapter<TransactionO
     @NonNull
     @Override
     public ImageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(mContext).inflate(R.layout.menu_list_transaction, parent, false);
+        View v = LayoutInflater.from(mContext).inflate(R.layout.customer_delivery, parent, false);
         return new ImageViewHolder(v);
     }
 
@@ -67,6 +66,7 @@ public class TransactionOfflineAdapter extends RecyclerView.Adapter<TransactionO
             }
         });
     }
+
     @Override
     public int getItemCount() {
         return mUploads.size();
