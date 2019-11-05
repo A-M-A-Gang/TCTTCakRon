@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -40,10 +41,11 @@ public class TransactionOffline extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private ProgressBar mProgressBar;
     private List<Upload> listMenu;
+    ArrayList<KeranjangMenu> listMenuResult = new ArrayList<>();
     TextView jumlah;
     Spinner makanan, makanan2;
     TextView amount;
-    int counter = 0;
+    Button submit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,18 +59,17 @@ public class TransactionOffline extends AppCompatActivity {
         mRecyclerView = findViewById(R.id.recycleview_menu);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-
         mProgressBar = findViewById(R.id.progress_circle);
-
         makanan2 = findViewById(R.id.makanan_spinner2);
         jumlah = findViewById(R.id.total_tr_off);
-
         amount = findViewById(R.id.quantity_menu);
-
+        submit = findViewById(R.id.buttonPesan_tr_off);
         listMenu = new ArrayList<>();
 
 //        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter<String>.createFromResource(this, android.R.layout.simple_spinner_dropdown_item,menList);
         Intent intent = new Intent(this, TransactionOfflineAdapter.class);
+        Bundle extras = getIntent().getExtras();
+        LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver, new IntentFilter("custom-message"));
         jumlah.setText(getIntent().getStringExtra("total"));
         databaseMenu.addValueEventListener(new ValueEventListener() {
             @Override
@@ -89,8 +90,23 @@ public class TransactionOffline extends AppCompatActivity {
             }
         });
 
-        LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
-                new IntentFilter("custom-message"));
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                for (int childCount = mRecyclerView.getChildCount(), i = 0; i < childCount; ++i) {
+                    final RecyclerView.ViewHolder holder2 = mRecyclerView.getChildViewHolder(mRecyclerView.getChildAt(i));
+                    String namaMenu = holder2.itemView.findViewById(R.id.nama_menu).toString();
+                    String harga = holder2.itemView.findViewById(R.id.harga_menu).toString();
+                    String jumlah = holder2.itemView.findViewById(R.id.quantity_menu).toString();
+
+                    listMenuResult.add(new KeranjangMenu(namaMenu, Integer.parseInt(harga), Integer.parseInt(jumlah)));
+                }
+                Intent intent = new Intent(TransactionOffline.this, ResultActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
     }
 
     public BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
@@ -116,6 +132,8 @@ public class TransactionOffline extends AppCompatActivity {
         final View rowView = inflater.inflate(R.layout.field_transaction_offline, null);
         // Add the new row before the add field button.
         parentLinearLayout.addView(rowView, parentLinearLayout.getChildCount() - 1);
+
+
 //        databaseMenu.addValueEventListener(new ValueEventListener() {
 //            @Override
 //            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -139,6 +157,4 @@ public class TransactionOffline extends AppCompatActivity {
     public void onDelete(View view) {
         parentLinearLayout.removeView((View) view.getParent());
     }
-
-
 }
