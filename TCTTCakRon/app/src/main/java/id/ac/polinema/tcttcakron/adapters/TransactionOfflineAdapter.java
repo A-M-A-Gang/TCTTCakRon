@@ -19,10 +19,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import id.ac.polinema.tcttcakron.KeranjangMenu;
 import id.ac.polinema.tcttcakron.R;
 import id.ac.polinema.tcttcakron.TransactionOffline;
 import id.ac.polinema.tcttcakron.UpdateAdmin;
@@ -32,7 +30,6 @@ import id.ac.polinema.tcttcakron.Upload;
 public class TransactionOfflineAdapter extends RecyclerView.Adapter<TransactionOfflineAdapter.ImageViewHolder> {
     private Context mContext;
     private List<Upload> mUploads;
-    private ArrayList<KeranjangMenu> listMenu;
     int jumlah = 0;
 
     public TransactionOfflineAdapter(Context context, List<Upload> uploads){
@@ -44,30 +41,31 @@ public class TransactionOfflineAdapter extends RecyclerView.Adapter<TransactionO
     @Override
     public ImageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(mContext).inflate(R.layout.menu_list_transaction, parent, false);
-        return new  ImageViewHolder(v);
+        return new ImageViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final ImageViewHolder holder, final int position) {
-        final Upload uploadCurrent = mUploads.get(position);
+    public void onBindViewHolder(@NonNull final ImageViewHolder holder, int position) {
+        Upload uploadCurrent = mUploads.get(position);
         holder.nama.setText(uploadCurrent.getNameImage());
         holder.harga.setText(String.valueOf(uploadCurrent.getHarga()));
         Glide.with(mContext).load(uploadCurrent.getImageUrl()).apply(new RequestOptions().centerCrop().override(500, 500)).into(holder.image);
-        listMenu.add(new KeranjangMenu(uploadCurrent.getNameImage(), Integer.parseInt(holder.harga.getText().toString()), Integer.parseInt(holder.amount.getText().toString())));
         holder.increase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 holder.counter++;
                 holder.amount.setText(Integer.toString(holder.counter));
                 jumlah += (Integer.parseInt(holder.harga.getText().toString()));
-//                listMenu.add(new KeranjangMenu(uploadCurrent.getNameImage(), uploadCurrent.getHarga(), Integer.parseInt(holder.amount.getText().toString())));
+//                Intent intent = new Intent(mContext, UpdateMenuAdmin.class);
+//                intent.putExtra("total", String.valueOf(jumlah));
+
+                String ItemName = holder.nama.getText().toString();
                 Intent intent = new Intent("custom-message");
-//                intent.putExtra("menu", uploadCurrent.getNameImage());
-//                intent.putExtra("amount", jumlah);
-//                intent.putStringArrayListExtra()
+                //            intent.putExtra("quantity",Integer.parseInt(quantity.getText().toString()));
+//                intent.putExtra("item",ItemName);
+//                intent.putExtra("quantity",qty);
                 intent.putExtra("total", String.valueOf(jumlah));
                 LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
-//                listMenu.set(position, new KeranjangMenu(uploadCurrent.getNameImage(), Integer.parseInt(holder.harga.getText().toString()), Integer.parseInt(holder.amount.getText().toString())));
             }
         });
 
@@ -83,8 +81,8 @@ public class TransactionOfflineAdapter extends RecyclerView.Adapter<TransactionO
                     Intent intent = new Intent("custom-message");
                     intent.putExtra("total", String.valueOf(jumlah));
                     LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
-//                    listMenu.set(position, new KeranjangMenu(uploadCurrent.getNameImage(), Integer.parseInt(holder.harga.getText().toString()), Integer.parseInt(holder.amount.getText().toString())));
                 }
+//                handlerOnClickDecrease(view);
             }
         });
         holder.amount.addTextChangedListener(new TextWatcher() {
@@ -111,7 +109,7 @@ public class TransactionOfflineAdapter extends RecyclerView.Adapter<TransactionO
         return mUploads.size();
     }
 
-        public class ImageViewHolder extends RecyclerView.ViewHolder {
+    public class ImageViewHolder extends RecyclerView.ViewHolder {
         public TextView nama, harga, total;
         public ImageView image;
         TextView amount;
@@ -120,7 +118,7 @@ public class TransactionOfflineAdapter extends RecyclerView.Adapter<TransactionO
 
         public ImageViewHolder(View itemView){
             super(itemView);
-            listMenu = new ArrayList<KeranjangMenu>(mUploads.size());
+
             nama = itemView.findViewById(R.id.nama_menu);
             harga = itemView.findViewById(R.id.harga_menu);
             image = itemView.findViewById(R.id.gambar_menu);
@@ -138,14 +136,7 @@ public class TransactionOfflineAdapter extends RecyclerView.Adapter<TransactionO
 
                 @Override
                 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//                    if (listMenu.get(getAdapterPosition()) == null){
-//                        listMenu.add(new KeranjangMenu(nama.getText().toString(), Integer.parseInt(harga.getText().toString()), Integer.parseInt(amount.getText().toString())));
-//                    } else {
-//                        listMenu.set(getAdapterPosition(), new KeranjangMenu(nama.getText().toString(), Integer.parseInt(harga.getText().toString()), Integer.parseInt(amount.getText().toString())));
-//                    }
 
-//                    listMenu.set(getAdapterPosition()).setHarga(Integer.parseInt(harga.getText().toString()));
-//                    listMenu.set(getAdapterPosition()).setJumlah(Integer.parseInt(amount.getText().toString()));
                 }
 
                 @Override

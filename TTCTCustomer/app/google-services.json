@@ -1,0 +1,93 @@
+{
+  "project_info": {
+    "project_number": "659645914741",
+    "firebase_url": "https://tctt-cak-ron.firebaseio.com",
+    "project_id": "tctt-cak-ron",
+    "storage_bucket": "tctt-cak-ron.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:659645914741:android:cd35f301ada6cad13c223c",
+        "android_client_info": {
+          "package_name": "id.ac.polinema.tcttcakron"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "659645914741-a6rtkk14it8nsdgtaomtbp1a30nj9c22.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.ac.polinema.tcttcakron",
+            "certificate_hash": "2a0c58c1849af00f02a78942044c328a807eead2"
+          }
+        },
+        {
+          "client_id": "659645914741-jqrs1407qhprrn95qkudej92a0tj7b2d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.ac.polinema.tcttcakron",
+            "certificate_hash": "aaa8f22987a85b808b3c4e7318f7060e3c7626f1"
+          }
+        },
+        {
+          "client_id": "659645914741-q5o99trp1jidsljdr1tenr8majq0tekh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFBr1AVHBlEvfYip1_EvdUgiKpjWxwmgw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "659645914741-q5o99trp1jidsljdr1tenr8majq0tekh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:659645914741:android:37043c5c34c087ff3c223c",
+        "android_client_info": {
+          "package_name": "id.ac.polinema.ttctcustomer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "659645914741-7me3f3n22n5h8sgi3fkdiiaua9iu1l0p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.ac.polinema.ttctcustomer",
+            "certificate_hash": "2a0c58c1849af00f02a78942044c328a807eead2"
+          }
+        },
+        {
+          "client_id": "659645914741-q5o99trp1jidsljdr1tenr8majq0tekh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFBr1AVHBlEvfYip1_EvdUgiKpjWxwmgw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "659645914741-q5o99trp1jidsljdr1tenr8majq0tekh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

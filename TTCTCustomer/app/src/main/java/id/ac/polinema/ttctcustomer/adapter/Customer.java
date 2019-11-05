@@ -1,9 +1,4 @@
-package id.ac.polinema.ttctcustomer;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+package id.ac.polinema.ttctcustomer.adapter;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -17,6 +12,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,31 +27,34 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import id.ac.polinema.ttctcustomer.adapter.CustomerAdapter;
+import id.ac.polinema.ttctcustomer.MainActivity;
+import id.ac.polinema.ttctcustomer.R;
+import id.ac.polinema.ttctcustomer.Upload;
 
+import id.ac.polinema.ttctcustomer.adapter.Customer;
 
-public class MainActivity extends AppCompatActivity{
-    DatabaseReference databaseMenu = FirebaseDatabase.getInstance().getReference("Menu");
-    private CustomerAdapter mAdapter;
-    final Context context = this;
-    List<String> menuList = new ArrayList<String>();
-    private LinearLayout parentLinearLayout;
-    private RecyclerView mRecyclerView;
-    private ProgressBar mProgressBar;
-    private List<Upload> listMenu;
-    Spinner makanan, makanan2, jumlah;
-    TextView amount;
-    int counter = 0;
+public class Customer extends AppCompatActivity {
+        DatabaseReference databaseMenu = FirebaseDatabase.getInstance().getReference("Menu");
+        private CustomerAdapter mAdapter;
+        final Context context = this;
+        List<String> menuList = new ArrayList<String>();
+        private LinearLayout parentLinearLayout;
+        private RecyclerView mRecyclerView;
+        private ProgressBar mProgressBar;
+        private List<Upload> listMenu;
+        Spinner makanan, makanan2, jumlah;
+        TextView amount;
+        int counter = 0;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
+        @Override
+        public void onCreate (Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         RelativeLayout placeholder = findViewById(R.id.list_layout_tr_off);
         LayoutInflater inflate = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         RelativeLayout holder = (RelativeLayout) inflate.inflate(R.layout.field, null);
-        placeholder.addView(holder);
+            RelativeLayout holder2 = (RelativeLayout) inflate.inflate(R.layout.customer_delivery, null);
+        placeholder.addView(holder2);
 
         mRecyclerView = findViewById(R.id.recycleview_menu);
         mRecyclerView.setHasFixedSize(true);
@@ -70,22 +74,22 @@ public class MainActivity extends AppCompatActivity{
                     Upload menu = postSnapshot.getValue(Upload.class);
                     listMenu.add(menu);
                 }
-                mAdapter = new CustomerAdapter(MainActivity.this, listMenu);
+                mAdapter = new CustomerAdapter(Customer.this, listMenu);
                 mRecyclerView.setAdapter(mAdapter);
                 mProgressBar.setVisibility(View.INVISIBLE);
-//                Toast.makeText(CustomerMenu.this, "OK", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Customer.this, "OK", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(MainActivity.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
-//                Toast.makeText(CustomerMenu.this, "????????", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Customer.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(Customer.this, "????????", Toast.LENGTH_SHORT).show();
                 mProgressBar.setVisibility(View.INVISIBLE);
             }
         });
     }
 
-    public void handlerOnClickPesan (View view){
+        public void handlerOnClickPesan (View view){
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
 
         // set title
