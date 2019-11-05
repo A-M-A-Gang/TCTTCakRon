@@ -43,28 +43,6 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ImageV
         holder.nama.setText(uploadCurrent.getNameImage());
         holder.harga.setText(String.valueOf(uploadCurrent.getHarga()));
         Glide.with(mContext).load(uploadCurrent.getImageUrl()).apply(new RequestOptions().centerCrop().override(500, 500)).into(holder.image);
-        holder.increase.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                holder.counter++;
-                holder.amount.setText(Integer.toString(holder.counter));
-//                handlerOnClickIncrease(view);
-            }
-        });
-
-        holder.decrease.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (holder.counter == 0){
-//            Toast.makeText(TransactionOffline.this, "Tidak bisa kurang dari 0", Toast.LENGTH_SHORT).show();
-                } else {
-                    holder.counter--;
-                    holder.amount.setText(Integer.toString(holder.counter));
-                }
-
-//                handlerOnClickDecrease(view);
-            }
-        });
     }
 
     @Override

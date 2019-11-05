@@ -53,7 +53,8 @@ public class Customer extends AppCompatActivity {
         RelativeLayout placeholder = findViewById(R.id.list_layout_tr_off);
         LayoutInflater inflate = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         RelativeLayout holder = (RelativeLayout) inflate.inflate(R.layout.field, null);
-        placeholder.addView(holder);
+            RelativeLayout holder2 = (RelativeLayout) inflate.inflate(R.layout.customer_delivery, null);
+        placeholder.addView(holder2);
 
         mRecyclerView = findViewById(R.id.recycleview_menu);
         mRecyclerView.setHasFixedSize(true);
@@ -76,11 +77,13 @@ public class Customer extends AppCompatActivity {
                 mAdapter = new CustomerAdapter(Customer.this, listMenu);
                 mRecyclerView.setAdapter(mAdapter);
                 mProgressBar.setVisibility(View.INVISIBLE);
+                Toast.makeText(Customer.this, "OK", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 Toast.makeText(Customer.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(Customer.this, "????????", Toast.LENGTH_SHORT).show();
                 mProgressBar.setVisibility(View.INVISIBLE);
             }
         });
