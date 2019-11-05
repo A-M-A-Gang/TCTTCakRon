@@ -2,11 +2,14 @@ package id.ac.polinema.tcttcakron;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,7 +40,8 @@ public class TransactionOffline extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private ProgressBar mProgressBar;
     private List<Upload> listMenu;
-    Spinner makanan, makanan2, jumlah;
+    TextView jumlah;
+    Spinner makanan, makanan2;
     TextView amount;
     int counter = 0;
 
@@ -57,15 +61,15 @@ public class TransactionOffline extends AppCompatActivity {
         mProgressBar = findViewById(R.id.progress_circle);
 
         makanan2 = findViewById(R.id.makanan_spinner2);
-        jumlah = findViewById(R.id.number_spinner);
+        jumlah = findViewById(R.id.total_tr_off);
 
         amount = findViewById(R.id.quantity_menu);
 
         listMenu = new ArrayList<>();
 
 //        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter<String>.createFromResource(this, android.R.layout.simple_spinner_dropdown_item,menList);
-
-
+        Intent intent = new Intent(this, TransactionOfflineAdapter.class);
+        jumlah.setText(getIntent().getStringExtra("total"));
         databaseMenu.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -84,7 +88,23 @@ public class TransactionOffline extends AppCompatActivity {
                 mProgressBar.setVisibility(View.INVISIBLE);
             }
         });
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
+                new IntentFilter("custom-message"));
     }
+
+    public BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            // Get extra data included in the Intent
+//            String ItemName = intent.getStringExtra("item");
+//            String qty = intent.getStringExtra("quantity");
+            String total = intent.getStringExtra("total");
+//            Toast.makeText(TransactionOffline.this,ItemName + " " + qty ,Toast.LENGTH_SHORT).show();
+            jumlah.setText(total);
+        }
+    };
+
 
     public void handlerOnClickBack(View view) {
         Intent intent = new Intent(this, FiturAdmin.class);

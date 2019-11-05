@@ -34,8 +34,8 @@
 
     <EditText
         android:id="@+id/checkednamapelanggan9"
-        android:layout_width="217dp"
-        android:layout_height="32dp"
+        android:layout_width="215dp"
+        android:layout_height="43dp"
         android:layout_marginStart="20dp"
         android:scrollHorizontally="false"
         android:text=""
@@ -46,12 +46,13 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
         android:layout_marginBottom="28dp"
         android:fontFamily="sans-serif-medium"
         android:text="Total :"
         android:textColor="@color/colorBlack"
         app:layout_constraintBottom_toTopOf="@+id/buttonPesan_tr_off"
-        tools:layout_editor_absoluteX="249dp" />
+        app:layout_constraintEnd_toStartOf="@+id/buttonPesan_tr_off" />
 
     <Button
         android:id="@+id/buttonPesan_tr_off"
@@ -86,7 +87,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkednamapelanggan9">
-
     </RelativeLayout>
 
     <TextView
