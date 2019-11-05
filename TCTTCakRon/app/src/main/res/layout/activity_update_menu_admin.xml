@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorCream"
     tools:context=".UpdateMenuAdmin">
 
     <TextView
@@ -11,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:fontFamily="sans-serif-medium"
+        android:fontFamily="@font/berkshire_swash"
         android:text="@string/common_google_play_services_update_button"
         android:textColor="@color/colorBlack"
         android:textSize="30dp"
@@ -37,6 +38,7 @@
         android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="Nama Makanan"
+        android:fontFamily="@font/cookie"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="@+id/image_update"
         app:layout_constraintHorizontal_bias="0.488"
@@ -50,6 +52,7 @@
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Harga"
+        android:fontFamily="@font/cookie"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="@+id/nama_update"
         app:layout_constraintHorizontal_bias="0.0"

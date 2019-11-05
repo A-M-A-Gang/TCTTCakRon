@@ -24,8 +24,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:fontFamily="sans-serif-medium"
         android:text="Transaction"
+        android:fontFamily="@font/berkshire_swash"
         android:textColor="@color/colorBlack"
         android:textSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -61,6 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
         android:text="T. Offline"
+        android:fontFamily="@font/caveat_brush"
         app:layout_constraintEnd_toEndOf="@+id/imageofflineT"
         app:layout_constraintStart_toStartOf="@+id/imageofflineT"
         app:layout_constraintTop_toBottomOf="@+id/imageofflineT" />
@@ -71,6 +72,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
         android:text="T. Online"
+        android:fontFamily="@font/caveat_brush"
         app:layout_constraintEnd_toEndOf="@+id/imageofflineT2"
         app:layout_constraintStart_toStartOf="@+id/imageofflineT2"
         app:layout_constraintTop_toBottomOf="@+id/imageofflineT2" />
