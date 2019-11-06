@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -22,9 +21,6 @@ import com.bumptech.glide.request.RequestOptions;
 import java.util.List;
 
 import id.ac.polinema.tcttcakron.R;
-import id.ac.polinema.tcttcakron.TransactionOffline;
-import id.ac.polinema.tcttcakron.UpdateAdmin;
-import id.ac.polinema.tcttcakron.UpdateMenuAdmin;
 import id.ac.polinema.tcttcakron.Upload;
 
 public class TransactionOfflineAdapter extends RecyclerView.Adapter<TransactionOfflineAdapter.ImageViewHolder> {
@@ -56,14 +52,7 @@ public class TransactionOfflineAdapter extends RecyclerView.Adapter<TransactionO
                 holder.counter++;
                 holder.amount.setText(Integer.toString(holder.counter));
                 jumlah += (Integer.parseInt(holder.harga.getText().toString()));
-//                Intent intent = new Intent(mContext, UpdateMenuAdmin.class);
-//                intent.putExtra("total", String.valueOf(jumlah));
-
-                String ItemName = holder.nama.getText().toString();
                 Intent intent = new Intent("custom-message");
-                //            intent.putExtra("quantity",Integer.parseInt(quantity.getText().toString()));
-//                intent.putExtra("item",ItemName);
-//                intent.putExtra("quantity",qty);
                 intent.putExtra("total", String.valueOf(jumlah));
                 LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
             }
@@ -73,7 +62,6 @@ public class TransactionOfflineAdapter extends RecyclerView.Adapter<TransactionO
             @Override
             public void onClick(View view) {
                 if (holder.counter == 0){
-//            Toast.makeText(TransactionOffline.this, "Tidak bisa kurang dari 0", Toast.LENGTH_SHORT).show();
                 } else {
                     holder.counter--;
                     holder.amount.setText(Integer.toString(holder.counter));
@@ -82,7 +70,6 @@ public class TransactionOfflineAdapter extends RecyclerView.Adapter<TransactionO
                     intent.putExtra("total", String.valueOf(jumlah));
                     LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
                 }
-//                handlerOnClickDecrease(view);
             }
         });
         holder.amount.addTextChangedListener(new TextWatcher() {
