@@ -15,6 +15,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import id.ac.polinema.tcttcakron.models.User;
+
 public class SignUpActivity extends AppCompatActivity {
     EditText username, password;
     Button signUp;

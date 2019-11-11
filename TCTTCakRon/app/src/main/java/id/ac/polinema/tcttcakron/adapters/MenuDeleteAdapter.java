@@ -30,7 +30,7 @@ import com.google.firebase.storage.StorageReference;
 import java.util.List;
 
 import id.ac.polinema.tcttcakron.R;
-import id.ac.polinema.tcttcakron.Upload;
+import id.ac.polinema.tcttcakron.models.Upload;
 
 public class MenuDeleteAdapter extends RecyclerView.Adapter<MenuDeleteAdapter.ImageViewHolder> {
     private Context mContext;

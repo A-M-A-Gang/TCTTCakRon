@@ -40,7 +40,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView4"></RelativeLayout>
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/order_result"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -58,8 +58,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:text="Total"
-        app:layout_constraintBottom_toTopOf="@+id/button6"
-        app:layout_constraintStart_toStartOf="@+id/button6" />
+        app:layout_constraintBottom_toTopOf="@+id/order_result"
+        app:layout_constraintStart_toStartOf="@+id/order_result" />
 
     <TextView
         android:id="@+id/total_result"
@@ -67,6 +67,6 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:text="total belanja"
-        app:layout_constraintBottom_toTopOf="@+id/button6"
-        app:layout_constraintEnd_toEndOf="@+id/button6" />
+        app:layout_constraintBottom_toTopOf="@+id/order_result"
+        app:layout_constraintEnd_toEndOf="@+id/order_result" />
 </androidx.constraintlayout.widget.ConstraintLayout>

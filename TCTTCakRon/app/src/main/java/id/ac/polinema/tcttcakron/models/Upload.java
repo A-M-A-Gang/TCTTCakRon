@@ -1,4 +1,4 @@
-package id.ac.polinema.tcttcakron;
+package id.ac.polinema.tcttcakron.models;
 
 public class Upload {
     private String nameImage, imageUrl;

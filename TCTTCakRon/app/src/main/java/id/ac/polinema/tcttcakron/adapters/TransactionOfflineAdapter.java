@@ -22,9 +22,9 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
-import id.ac.polinema.tcttcakron.KeranjangMenu;
+import id.ac.polinema.tcttcakron.models.KeranjangMenu;
 import id.ac.polinema.tcttcakron.R;
-import id.ac.polinema.tcttcakron.Upload;
+import id.ac.polinema.tcttcakron.models.Upload;
 
 public class TransactionOfflineAdapter extends RecyclerView.Adapter<TransactionOfflineAdapter.ImageViewHolder> {
     private Context mContext;

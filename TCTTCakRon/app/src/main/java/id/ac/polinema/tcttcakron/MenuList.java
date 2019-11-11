@@ -13,6 +13,8 @@ import androidx.annotation.Nullable;
 
 import java.util.List;
 
+import id.ac.polinema.tcttcakron.models.Upload;
+
 public class MenuList extends ArrayAdapter<Upload> {
     private Activity context;
     private List<Upload> menuList;

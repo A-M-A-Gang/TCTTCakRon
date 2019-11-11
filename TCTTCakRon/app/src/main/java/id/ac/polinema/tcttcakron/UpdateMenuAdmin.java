@@ -33,6 +33,8 @@ import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 
+import id.ac.polinema.tcttcakron.models.Upload;
+
 public class UpdateMenuAdmin extends AppCompatActivity {
     ImageView updateImage;
     EditText nama, harga;

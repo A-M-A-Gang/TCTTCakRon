@@ -1,4 +1,4 @@
-package id.ac.polinema.tcttcakron;
+package id.ac.polinema.tcttcakron.models;
 
 public class User {
     private String username, password;

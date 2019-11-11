@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import id.ac.polinema.tcttcakron.adapters.MenuDeleteAdapter;
+import id.ac.polinema.tcttcakron.models.Upload;
 
 public class DeleteAdmin extends AppCompatActivity {
     final Context context = this;

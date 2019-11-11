@@ -13,9 +13,7 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -33,6 +31,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import id.ac.polinema.tcttcakron.adapters.TransactionOfflineAdapter;
+import id.ac.polinema.tcttcakron.models.KeranjangMenu;
+import id.ac.polinema.tcttcakron.models.Upload;
 
 public class TransactionOffline extends AppCompatActivity {
     DatabaseReference databaseMenu = FirebaseDatabase.getInstance().getReference("Menu");

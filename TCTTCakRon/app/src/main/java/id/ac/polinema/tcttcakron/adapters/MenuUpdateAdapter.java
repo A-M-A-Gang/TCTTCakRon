@@ -3,7 +3,6 @@ package id.ac.polinema.tcttcakron.adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,15 +15,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 import id.ac.polinema.tcttcakron.R;
-import id.ac.polinema.tcttcakron.UpdateAdmin;
 import id.ac.polinema.tcttcakron.UpdateMenuAdmin;
-import id.ac.polinema.tcttcakron.Upload;
-import id.ac.polinema.tcttcakron.models.MenuUpdate;
+import id.ac.polinema.tcttcakron.models.Upload;
 
 public class MenuUpdateAdapter extends RecyclerView.Adapter<MenuUpdateAdapter.MyViewHolder> {
     private Context mContext;

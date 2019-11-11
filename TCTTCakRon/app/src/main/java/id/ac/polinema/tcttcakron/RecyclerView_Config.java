@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+import id.ac.polinema.tcttcakron.models.Upload;
+
 public class RecyclerView_Config {
     private Context mContext;
     private MenuAdapter mMenuAdapter;
