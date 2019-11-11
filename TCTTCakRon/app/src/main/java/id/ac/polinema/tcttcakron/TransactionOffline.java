@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -53,7 +54,7 @@ public class TransactionOffline extends AppCompatActivity {
         setContentView(R.layout.activity_transaction_offline);
         RelativeLayout placeholder = findViewById(R.id.list_layout_tr_off);
         LayoutInflater inflate = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        RelativeLayout holder = (RelativeLayout) inflate.inflate(R.layout.activity_menu_list, null);
+        final RelativeLayout holder = (RelativeLayout) inflate.inflate(R.layout.activity_menu_list, null);
         placeholder.addView(holder);
 
         mRecyclerView = findViewById(R.id.recycleview_menu);
@@ -67,7 +68,7 @@ public class TransactionOffline extends AppCompatActivity {
         listMenu = new ArrayList<>();
 
 //        ArrayAdapter<CharSequence> adapter2 = ArrayAdapter<String>.createFromResource(this, android.R.layout.simple_spinner_dropdown_item,menList);
-        Intent intent = new Intent(this, TransactionOfflineAdapter.class);
+        final Intent intent = new Intent(this, TransactionOfflineAdapter.class);
         Bundle extras = getIntent().getExtras();
         LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver, new IntentFilter("custom-message"));
         jumlah.setText(getIntent().getStringExtra("total"));
@@ -93,14 +94,15 @@ public class TransactionOffline extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                for (int childCount = mRecyclerView.getChildCount(), i = 0; i < childCount; ++i) {
-                    final RecyclerView.ViewHolder holder2 = mRecyclerView.getChildViewHolder(mRecyclerView.getChildAt(i));
-                    String namaMenu = holder2.itemView.findViewById(R.id.nama_menu).toString();
-                    String harga = holder2.itemView.findViewById(R.id.harga_menu).toString();
-                    String jumlah = holder2.itemView.findViewById(R.id.quantity_menu).toString();
-
-                    listMenuResult.add(new KeranjangMenu(namaMenu, Integer.parseInt(harga), Integer.parseInt(jumlah)));
-                }
+//                for (int childCount = mRecyclerView.getAdapter().getItemCount(), i = 0; i < childCount; ++i) {
+//                    final RecyclerView.ViewHolder holder2 = mRecyclerView.getChildViewHolder(holder);
+//                    TextView namaMenu = holder2.itemView.findViewById(R.id.nama_menu);
+//                    TextView harga = holder2.itemView.findViewById(R.id.harga_menu);
+//                    TextView jumlah = holder2.itemView.findViewById(R.id.quantity_menu);
+//                    listMenuResult.add(new KeranjangMenu(namaMenu.getText().toString(), Integer.parseInt(harga.getText().toString()), Integer.parseInt(jumlah.getText().toString())));
+//                    System.out.println(i + " of " + childCount);
+////                    intent.putExtras("menu",listMenuResult);
+//                }
                 Intent intent = new Intent(TransactionOffline.this, ResultActivity.class);
                 startActivity(intent);
             }

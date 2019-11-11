@@ -49,7 +49,7 @@ public class ResultActivityAdapter extends RecyclerView.Adapter<ResultActivityAd
             super(view);
             jumlah = view.findViewById(R.id.jumlah_result);
             menu = view.findViewById(R.id.menu_result);
-            harga = view.findViewById(R.id.harga_menu);
+            harga = view.findViewById(R.id.harga_result);
         }
     }
 }

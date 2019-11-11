@@ -18,9 +18,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
+import id.ac.polinema.tcttcakron.KeranjangMenu;
 import id.ac.polinema.tcttcakron.R;
 import id.ac.polinema.tcttcakron.TransactionOffline;
 import id.ac.polinema.tcttcakron.UpdateAdmin;
@@ -46,7 +49,7 @@ public class TransactionOfflineAdapter extends RecyclerView.Adapter<TransactionO
 
     @Override
     public void onBindViewHolder(@NonNull final ImageViewHolder holder, int position) {
-        Upload uploadCurrent = mUploads.get(position);
+        final Upload uploadCurrent = mUploads.get(position);
         holder.nama.setText(uploadCurrent.getNameImage());
         holder.harga.setText(String.valueOf(uploadCurrent.getHarga()));
         Glide.with(mContext).load(uploadCurrent.getImageUrl()).apply(new RequestOptions().centerCrop().override(500, 500)).into(holder.image);
@@ -66,6 +69,7 @@ public class TransactionOfflineAdapter extends RecyclerView.Adapter<TransactionO
 //                intent.putExtra("quantity",qty);
                 intent.putExtra("total", String.valueOf(jumlah));
                 LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
+                new KeranjangMenu(uploadCurrent.getNameImage(), uploadCurrent.getHarga(), Integer.parseInt(holder.amount.getText().toString()));
             }
         });
 
@@ -81,6 +85,7 @@ public class TransactionOfflineAdapter extends RecyclerView.Adapter<TransactionO
                     Intent intent = new Intent("custom-message");
                     intent.putExtra("total", String.valueOf(jumlah));
                     LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
+                    new KeranjangMenu(uploadCurrent.getNameImage(), uploadCurrent.getHarga(), Integer.parseInt(holder.amount.getText().toString()));
                 }
 //                handlerOnClickDecrease(view);
             }
@@ -101,7 +106,15 @@ public class TransactionOfflineAdapter extends RecyclerView.Adapter<TransactionO
 
             }
         });
-
+        holder.add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                KeranjangMenu keranjangMenu= new KeranjangMenu(uploadCurrent.getNameImage(),
+                        uploadCurrent.getHarga(),
+                        Integer.parseInt(holder.amount.getText().toString()));
+                holder.mDatabaseRef.child(uploadCurrent.getNameImage()).setValue(keranjangMenu);
+            }
+        });
     }
 
     @Override
@@ -113,8 +126,9 @@ public class TransactionOfflineAdapter extends RecyclerView.Adapter<TransactionO
         public TextView nama, harga, total;
         public ImageView image;
         TextView amount;
-        Button increase, decrease;
+        Button increase, decrease, add;
         int counter = 0;
+        DatabaseReference mDatabaseRef;
 
         public ImageViewHolder(View itemView){
             super(itemView);
@@ -126,7 +140,8 @@ public class TransactionOfflineAdapter extends RecyclerView.Adapter<TransactionO
             increase = itemView.findViewById(R.id.increase_button);
             decrease = itemView.findViewById(R.id.decrease_button);
             total = itemView.findViewById(R.id.total_tr_off);
-
+            add = itemView.findViewById(R.id.add_to_cart);
+            mDatabaseRef = FirebaseDatabase.getInstance().getReference("temp");
 
             amount.addTextChangedListener(new TextWatcher() {
                 @Override
