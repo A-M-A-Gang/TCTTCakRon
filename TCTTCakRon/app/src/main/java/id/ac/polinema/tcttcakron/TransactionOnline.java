@@ -25,6 +25,7 @@ import java.util.List;
 
 import id.ac.polinema.tcttcakron.adapters.TransactionOfflineAdapter;
 import id.ac.polinema.tcttcakron.adapters.TransactionOnlineAdapter;
+import id.ac.polinema.tcttcakron.adapters.TransactionOnlineAdapter2;
 import id.ac.polinema.tcttcakron.models.KeranjangMenu;
 import id.ac.polinema.tcttcakron.models.Order;
 import id.ac.polinema.tcttcakron.models.Upload;
@@ -34,16 +35,24 @@ public class TransactionOnline extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private List<Order> listOrder;
     private TransactionOnlineAdapter mAdapter;
+    private TransactionOnlineAdapter2 mAdapter2;
     private ProgressBar mProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction_online);
+
         RelativeLayout placeholder = findViewById(R.id.list_order);
         LayoutInflater inflate = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final RelativeLayout holder = (RelativeLayout) inflate.inflate(R.layout.activity_menu_list, null);
         placeholder.addView(holder);
+
+//        RelativeLayout placeholder2 = findViewById(R.id.list_order_layout);
+//        LayoutInflater inflate2 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//        final RelativeLayout holder2 = (RelativeLayout) inflate2.inflate(R.layout.activity_menu_list, null);
+//        placeholder2.addView(holder2);
+
         mRecyclerView = findViewById(R.id.recycleview_menu);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -58,6 +67,7 @@ public class TransactionOnline extends AppCompatActivity {
                     listOrder.add(menu);
                 }
                 mAdapter = new TransactionOnlineAdapter(TransactionOnline.this, listOrder);
+//                mAdapter2 = new TransactionOnlineAdapter2(TransactionOnline.this, listOrder);
                 mRecyclerView.setAdapter(mAdapter);
                 mProgressBar.setVisibility(View.INVISIBLE);
             }

@@ -17,15 +17,17 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.List;
 
 import id.ac.polinema.tcttcakron.R;
+import id.ac.polinema.tcttcakron.models.KeranjangMenu;
 import id.ac.polinema.tcttcakron.models.Order;
 
 public class TransactionOnlineAdapter2 extends RecyclerView.Adapter<TransactionOnlineAdapter2.ImageViewHolder> {
     private Context mContext;
     private List<Order> mOrders;
+    private List<KeranjangMenu> mMenu;
 
-    public TransactionOnlineAdapter2(Context context, List<Order> orders){
+    public TransactionOnlineAdapter2(Context context, List<KeranjangMenu> orders){
         mContext = context;
-        mOrders = orders;
+        mMenu = orders;
     }
 
     @NonNull
@@ -37,23 +39,26 @@ public class TransactionOnlineAdapter2 extends RecyclerView.Adapter<TransactionO
 
     @Override
     public void onBindViewHolder(@NonNull final ImageViewHolder holder, int position) {
-        final Order uploadCurrent = mOrders.get(position);
-        holder.nama.setText(uploadCurrent.getNama());
+        final KeranjangMenu uploadCurrent = mMenu.get(position);
+//        List<KeranjangMenu> order = uploadCurrent.getFoods();
+        holder.menu.setText(uploadCurrent.getNamaMenu());
     }
 
     @Override
     public int getItemCount() {
-        return mOrders.size();
+        return mMenu.size();
     }
 
     public class ImageViewHolder extends RecyclerView.ViewHolder {
-        public TextView nama;
+        public TextView menu, harga, jumlah;
         DatabaseReference mDatabaseRef;
 
         public ImageViewHolder(View itemView) {
             super(itemView);
 
-            nama = itemView.findViewById(R.id.nama_order);
+            menu = itemView.findViewById(R.id.menu_order);
+            harga = itemView.findViewById(R.id.harga_order);
+            jumlah = itemView.findViewById(R.id.jumlah_order);
             mDatabaseRef = FirebaseDatabase.getInstance().getReference("Order");
         }
     }
