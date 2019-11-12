@@ -24,7 +24,6 @@ public class FiturAdmin extends AppCompatActivity {
         startActivity(intent);
     }
 
-
     public void handlerOnClickAdd(View view) {
         Intent intent = new Intent(this, AddAdmin.class);
         startActivity(intent);

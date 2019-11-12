@@ -41,7 +41,6 @@ public class ResultActivity extends AppCompatActivity {
     private List<KeranjangMenu> menuList;
     DatabaseReference databaseMenu, newOrder;
     private ResultActivityAdapter mAdapter;
-    ArrayList<KeranjangMenu> listMenuResult;
     TextView totalBelanja;
     Button pesan;
 
@@ -83,7 +82,6 @@ public class ResultActivity extends AppCompatActivity {
         });
         LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver, new IntentFilter("custom-message"));
         totalBelanja.setText(getIntent().getStringExtra("total"));
-
         pesan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -117,11 +115,7 @@ public class ResultActivity extends AppCompatActivity {
     public BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            // Get extra data included in the Intent
-//            String ItemName = intent.getStringExtra("item");
-//            String qty = intent.getStringExtra("quantity");
             String total = intent.getStringExtra("total");
-//            Toast.makeText(TransactionOffline.this,ItemName + " " + qty ,Toast.LENGTH_SHORT).show();
             totalBelanja.setText(total);
         }
     };

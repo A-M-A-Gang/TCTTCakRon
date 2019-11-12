@@ -154,7 +154,6 @@ public class UpdateMenuAdmin extends AppCompatActivity {
                             while (!urlTask.isSuccessful());
                             Uri downloadUrl = urlTask.getResult();
 
-                            //Log.d(TAG, "onSuccess: firebase download url: " + downloadUrl.toString()); //use if testing...don't need this line.
                             if (TempImageName != namaSelected){
                                 mDatabaseRef.child(namaSelected).setValue(null).addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override

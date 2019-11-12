@@ -2,7 +2,6 @@ package id.ac.polinema.tcttcakron.adapters;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,27 +11,21 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +33,6 @@ import java.util.List;
 import id.ac.polinema.tcttcakron.R;
 import id.ac.polinema.tcttcakron.models.KeranjangMenu;
 import id.ac.polinema.tcttcakron.models.Order;
-import id.ac.polinema.tcttcakron.models.Upload;
 
 public class TransactionOnlineAdapter extends RecyclerView.Adapter<TransactionOnlineAdapter.ImageViewHolder> {
     private Context mContext;
@@ -68,8 +60,6 @@ public class TransactionOnlineAdapter extends RecyclerView.Adapter<TransactionOn
         final Order uploadCurrent = mOrders.get(position);
         holder.nama.setText(uploadCurrent.getNama());
 
-//        RelativeLayout placeholder2 = itemView.findViewById(R.id.list_order_layout);
-
         LayoutInflater inflate2 = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final RelativeLayout holder2 = (RelativeLayout) inflate2.inflate(R.layout.activity_menu_list, null);
         holder.placeholder2.addView(holder2);
@@ -89,7 +79,6 @@ public class TransactionOnlineAdapter extends RecyclerView.Adapter<TransactionOn
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(mContext);
-
                 // set title
                 alertDialogBuilder.setTitle("Check");
                 alertDialogBuilder
@@ -113,22 +102,15 @@ public class TransactionOnlineAdapter extends RecyclerView.Adapter<TransactionOn
                                         Toast.makeText(mContext, "failed database", Toast.LENGTH_SHORT).show();
                                     }
                                 });
-
-                                // current activity
-//                        DeleteAdmin.this.finish();
                             }
                         })
                         .setNegativeButton("No",new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog,int id) {
-                                // if this button is clicked, just close
-                                // the dialog box and do nothing
                                 dialog.cancel();
                             }
                         });
-
                 // create alert dialog
                 AlertDialog alertDialog = alertDialogBuilder.create();
-
                 // show it
                 alertDialog.show();
             }
@@ -137,11 +119,7 @@ public class TransactionOnlineAdapter extends RecyclerView.Adapter<TransactionOn
         BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                // Get extra data included in the Intent
-//            String ItemName = intent.getStringExtra("item");
-//            String qty = intent.getStringExtra("quantity");
                 String total2 = intent.getStringExtra("total");
-//            Toast.makeText(TransactionOffline.this,ItemName + " " + qty ,Toast.LENGTH_SHORT).show();
                 holder.total.setText(total2);
             }
         };
@@ -158,8 +136,6 @@ public class TransactionOnlineAdapter extends RecyclerView.Adapter<TransactionOn
         public TextView nama, total;
         Button selesai;
         DatabaseReference mDatabaseRef;
-        private RecyclerView mRecyclerView;
-        private ProgressBar mProgressBar;
         RelativeLayout placeholder2;
 
         public ImageViewHolder(View itemView) {
@@ -172,6 +148,4 @@ public class TransactionOnlineAdapter extends RecyclerView.Adapter<TransactionOn
             placeholder2 = itemView.findViewById(R.id.list_order_layout);
         }
     }
-
-
 }

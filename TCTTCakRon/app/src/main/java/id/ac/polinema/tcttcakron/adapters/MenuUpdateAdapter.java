@@ -25,7 +25,6 @@ import id.ac.polinema.tcttcakron.models.Upload;
 public class MenuUpdateAdapter extends RecyclerView.Adapter<MenuUpdateAdapter.MyViewHolder> {
     private Context mContext;
     private List<Upload> mUploads;
-    UpdateMenuAdmin updateMenuAdmin;
 
     public MenuUpdateAdapter(Context context, List<Upload> uploads) {
         mContext = context;
@@ -56,12 +55,12 @@ public class MenuUpdateAdapter extends RecyclerView.Adapter<MenuUpdateAdapter.My
             }
         });
     }
+
     @Override
     public int getItemCount() {
-//        return (mUploads != null) ? mUploads.size() : 0;
          return mUploads.size();
-//        return 0;
     }
+
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView name, harga;
         public ImageView imageView;

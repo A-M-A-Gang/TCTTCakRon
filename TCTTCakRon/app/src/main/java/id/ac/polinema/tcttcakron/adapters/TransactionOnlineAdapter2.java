@@ -1,13 +1,11 @@
 package id.ac.polinema.tcttcakron.adapters;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,11 +18,9 @@ import java.util.List;
 
 import id.ac.polinema.tcttcakron.R;
 import id.ac.polinema.tcttcakron.models.KeranjangMenu;
-import id.ac.polinema.tcttcakron.models.Order;
 
 public class TransactionOnlineAdapter2 extends RecyclerView.Adapter<TransactionOnlineAdapter2.ImageViewHolder> {
     private Context mContext;
-    private List<Order> mOrders;
     private List<KeranjangMenu> mMenu;
     private String nama;
     int totalPerMenu = 0;
@@ -45,13 +41,11 @@ public class TransactionOnlineAdapter2 extends RecyclerView.Adapter<TransactionO
     @Override
     public void onBindViewHolder(@NonNull final ImageViewHolder holder, int position) {
         final KeranjangMenu uploadCurrent = mMenu.get(position);
-//        List<KeranjangMenu> order = uploadCurrent.getFoods();
         holder.menu.setText(uploadCurrent.getNamaMenu());
         holder.jumlah.setText(String.valueOf(uploadCurrent.getJumlah()));
         holder.harga.setText(String.valueOf(uploadCurrent.getHarga()));
         holder.totalPerMenu.setText(String.valueOf(uploadCurrent.getJumlah() * uploadCurrent.getHarga()));
         totalPerMenu += uploadCurrent.getJumlah() * uploadCurrent.getHarga();
-//        holder.total.setText(String.valueOf(totalPerMenu));
         mContext.toString();
         Intent intent = new Intent(nama);
         intent.putExtra("total", String.valueOf(totalPerMenu));

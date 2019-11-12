@@ -28,15 +28,11 @@ public class LoginAdmin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_admin);
-
         database = FirebaseDatabase.getInstance();
         karyawan = database.getReference("Karyawan");
-
         username = findViewById(R.id.in_username);
         password = findViewById(R.id.in_password);
         login = findViewById(R.id.loginButton);
-
-
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -75,7 +75,7 @@
         android:ems="10"
         android:hint="Harga"
         android:fontFamily="@font/cookie"
-        android:inputType="textPersonName"
+        android:inputType="number"
         app:layout_constraintEnd_toEndOf="@+id/editTextNamaMakanan"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/editTextNamaMakanan"

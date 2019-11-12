@@ -45,15 +45,12 @@ public class AddAdmin extends AppCompatActivity {
     EditText nama, harga;
     Button add;
     final int PICK_IMAGE_REQUEST = 1;
-    private int GALLERY = 1, CAMERA = 2;
+    private int CAMERA = 2;
     private static final String IMAGE_DIRECTORY = "/tctt";
-    private static final String TAG = AddAdmin.class.getCanonicalName();
     StorageReference mStorageRef;
     private DatabaseReference mDatabaseRef;
     private StorageTask mUploadTask;
     public Uri FilePathUri;
-    StorageReference storageReference;
-    DatabaseReference databaseReference;
     ProgressDialog progressDialog;
     UploadTask uploadTask;
 
@@ -74,7 +71,6 @@ public class AddAdmin extends AppCompatActivity {
         addImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                showPictureDialog();
                 choosePhotoFromGallary();
             }
         });
@@ -118,6 +114,7 @@ public class AddAdmin extends AppCompatActivity {
         }
         return "";
     }
+
     private void takePhotoFromCamera() {
         Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(intent, CAMERA);
@@ -181,7 +178,6 @@ public class AddAdmin extends AppCompatActivity {
                     while (!urlTask.isSuccessful());
                     Uri downloadUrl = urlTask.getResult();
 
-                    //Log.d(TAG, "onSuccess: firebase download url: " + downloadUrl.toString()); //use if testing...don't need this line.
                     Upload upload = new Upload(TempImageName,downloadUrl.toString(), hargamenu);
                     mDatabaseRef.child(TempImageName).setValue(upload);
                     }

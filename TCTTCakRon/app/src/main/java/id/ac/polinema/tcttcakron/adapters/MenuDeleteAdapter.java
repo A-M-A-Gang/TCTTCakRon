@@ -53,13 +53,11 @@ public class MenuDeleteAdapter extends RecyclerView.Adapter<MenuDeleteAdapter.Im
         final Upload uploadCurrent = mUploads.get(position);
         holder.nama.setText(uploadCurrent.getNameImage());
         holder.harga.setText(String.valueOf(uploadCurrent.getHarga()));
-//        Picasso.with(mContext).load(uploadCurrent.getImageUrl()).fit().centerCrop().into(holder.image);
         Glide.with(mContext).load(uploadCurrent.getImageUrl()).apply(new RequestOptions().centerCrop().override(500, 500)).into(holder.image);
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(mContext);
-
                 // set title
                 alertDialogBuilder.setTitle("Check");
                 alertDialogBuilder
@@ -98,21 +96,15 @@ public class MenuDeleteAdapter extends RecyclerView.Adapter<MenuDeleteAdapter.Im
                                         Toast.makeText(mContext, "failed storage", Toast.LENGTH_SHORT).show();
                                     }
                                 });
-                                // current activity
-//                        DeleteAdmin.this.finish();
                             }
                         })
                         .setNegativeButton("No",new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog,int id) {
-                                // if this button is clicked, just close
-                                // the dialog box and do nothing
                                 dialog.cancel();
                             }
                         });
-
                 // create alert dialog
                 AlertDialog alertDialog = alertDialogBuilder.create();
-
                 // show it
                 alertDialog.show();
             }

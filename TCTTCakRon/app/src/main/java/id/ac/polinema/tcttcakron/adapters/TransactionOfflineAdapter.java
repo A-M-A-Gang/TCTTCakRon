@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -96,10 +97,14 @@ public class TransactionOfflineAdapter extends RecyclerView.Adapter<TransactionO
         holder.add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                KeranjangMenu keranjangMenu= new KeranjangMenu(uploadCurrent.getNameImage(),
-                        uploadCurrent.getHarga(),
-                        Integer.parseInt(holder.amount.getText().toString()));
-                holder.mDatabaseRef.child(uploadCurrent.getNameImage()).setValue(keranjangMenu);
+                if (holder.amount.getText().toString().equals("0")) {
+                    Toast.makeText(mContext, "Tidak bisa 0", Toast.LENGTH_SHORT).show();
+                } else {
+                    KeranjangMenu keranjangMenu= new KeranjangMenu(uploadCurrent.getNameImage(),
+                            uploadCurrent.getHarga(),
+                            Integer.parseInt(holder.amount.getText().toString()));
+                    holder.mDatabaseRef.child(uploadCurrent.getNameImage()).setValue(keranjangMenu);
+                }
             }
         });
     }
@@ -146,22 +151,6 @@ public class TransactionOfflineAdapter extends RecyclerView.Adapter<TransactionO
 
                 }
             });
-
-//            total.setText(String.valueOf(jumlah));
-        }
-
-        public void handlerOnClickDecrease(View view) {
-            if (counter == 0){
-//            Toast.makeText(TransactionOffline.this, "Tidak bisa kurang dari 0", Toast.LENGTH_SHORT).show();
-            } else {
-                counter--;
-                amount.setText(Integer.toString(counter));
-            }
-        }
-
-        public void handlerOnClickIncrease(View view) {
-            counter++;
-            amount.setText(Integer.toString(counter));
         }
     }
 }
