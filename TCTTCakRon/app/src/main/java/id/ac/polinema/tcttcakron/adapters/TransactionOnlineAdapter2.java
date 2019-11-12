@@ -2,9 +2,11 @@ package id.ac.polinema.tcttcakron.adapters;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,10 +26,13 @@ public class TransactionOnlineAdapter2 extends RecyclerView.Adapter<TransactionO
     private Context mContext;
     private List<Order> mOrders;
     private List<KeranjangMenu> mMenu;
+    private String nama;
+    int totalPerMenu = 0;
 
-    public TransactionOnlineAdapter2(Context context, List<KeranjangMenu> orders){
+    public TransactionOnlineAdapter2(Context context, List<KeranjangMenu> orders, String nNama){
         mContext = context;
         mMenu = orders;
+        nama = nNama;
     }
 
     @NonNull
@@ -42,6 +47,15 @@ public class TransactionOnlineAdapter2 extends RecyclerView.Adapter<TransactionO
         final KeranjangMenu uploadCurrent = mMenu.get(position);
 //        List<KeranjangMenu> order = uploadCurrent.getFoods();
         holder.menu.setText(uploadCurrent.getNamaMenu());
+        holder.jumlah.setText(String.valueOf(uploadCurrent.getJumlah()));
+        holder.harga.setText(String.valueOf(uploadCurrent.getHarga()));
+        holder.totalPerMenu.setText(String.valueOf(uploadCurrent.getJumlah() * uploadCurrent.getHarga()));
+        totalPerMenu += uploadCurrent.getJumlah() * uploadCurrent.getHarga();
+//        holder.total.setText(String.valueOf(totalPerMenu));
+        mContext.toString();
+        Intent intent = new Intent(nama);
+        intent.putExtra("total", String.valueOf(totalPerMenu));
+        LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
     }
 
     @Override
@@ -50,7 +64,7 @@ public class TransactionOnlineAdapter2 extends RecyclerView.Adapter<TransactionO
     }
 
     public class ImageViewHolder extends RecyclerView.ViewHolder {
-        public TextView menu, harga, jumlah;
+        public TextView menu, harga, jumlah, totalPerMenu, total;
         DatabaseReference mDatabaseRef;
 
         public ImageViewHolder(View itemView) {
@@ -59,6 +73,8 @@ public class TransactionOnlineAdapter2 extends RecyclerView.Adapter<TransactionO
             menu = itemView.findViewById(R.id.menu_order);
             harga = itemView.findViewById(R.id.harga_order);
             jumlah = itemView.findViewById(R.id.jumlah_order);
+            totalPerMenu = itemView.findViewById(R.id.total_menu);
+            total = itemView.findViewById(R.id.total_biaya_order);
             mDatabaseRef = FirebaseDatabase.getInstance().getReference("Order");
         }
     }
