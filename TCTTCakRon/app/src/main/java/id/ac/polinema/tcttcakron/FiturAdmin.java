@@ -1,10 +1,10 @@
 package id.ac.polinema.tcttcakron;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class FiturAdmin extends AppCompatActivity {
 
@@ -31,11 +31,6 @@ public class FiturAdmin extends AppCompatActivity {
 
     public void handlerOnClickDelete(View view) {
         Intent intent = new Intent(this, DeleteAdmin.class);
-        startActivity(intent);
-    }
-
-    public void handlerOnClickLogout(View view) {
-        Intent intent = new Intent(this, LoginAdmin.class);
         startActivity(intent);
     }
 }

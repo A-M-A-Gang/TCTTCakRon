@@ -1,14 +1,14 @@
 package id.ac.polinema.tcttcakron;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -50,7 +50,7 @@ public class LoginAdmin extends AppCompatActivity {
                         User login = dataSnapshot.child(username).getValue(User.class);
                         if (login.getPassword().equals(password)){
                             Toast.makeText(LoginAdmin.this, "Success login", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getApplicationContext(), FiturAdmin.class);
+                            Intent intent = new Intent(getApplicationContext(), SettingAdmin.class);
                             startActivity(intent);
                         } else {
                             Toast.makeText(LoginAdmin.this, "Password salah", Toast.LENGTH_SHORT).show();
