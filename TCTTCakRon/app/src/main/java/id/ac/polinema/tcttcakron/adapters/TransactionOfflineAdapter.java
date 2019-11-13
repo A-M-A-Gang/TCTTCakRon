@@ -18,8 +18,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
@@ -99,6 +103,22 @@ public class TransactionOfflineAdapter extends RecyclerView.Adapter<TransactionO
             public void onClick(View view) {
                 if (holder.amount.getText().toString().equals("0")) {
                     Toast.makeText(mContext, "Tidak bisa 0", Toast.LENGTH_SHORT).show();
+                    DatabaseReference databaseRef = FirebaseDatabase.getInstance().getReference();
+
+                    Query applesQuery = databaseRef.child("temp").orderByChild("namaMenu").equalTo(uploadCurrent.getNameImage());
+                    applesQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            for (DataSnapshot appleSnapshot: dataSnapshot.getChildren()) {
+                                appleSnapshot.getRef().removeValue();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            Toast.makeText(mContext, "failed database", Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 } else {
                     KeranjangMenu keranjangMenu= new KeranjangMenu(uploadCurrent.getNameImage(),
                             uploadCurrent.getHarga(),
