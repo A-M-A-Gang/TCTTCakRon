@@ -134,7 +134,6 @@ public class CustomerAdapter extends RecyclerView.Adapter<CustomerAdapter.ImageV
             total = itemView.findViewById(R.id.total_tr_off);
             add = itemView.findViewById(R.id.add_to_cart);
             mDatabaseRef = FirebaseDatabase.getInstance().getReference("temp");
-
             amount.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
