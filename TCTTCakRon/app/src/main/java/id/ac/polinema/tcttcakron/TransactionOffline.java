@@ -89,25 +89,26 @@ public class TransactionOffline extends AppCompatActivity {
             }
         });
 
-        submit.setOnClickListener(new View.OnClickListener() {
+        databaseOrder.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onClick(View view) {
-                databaseOrder.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.hasChildren()){
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.hasChildren()){
+                    submit.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
                             Intent intent = new Intent(TransactionOffline.this, ResultActivity.class);
                             startActivity(intent);
                         }
-                    }
+                    });
+                }
+            }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                    }
-                });
             }
         });
+
 
 
     }

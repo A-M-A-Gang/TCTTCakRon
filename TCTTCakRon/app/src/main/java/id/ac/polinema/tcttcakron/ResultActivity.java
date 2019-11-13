@@ -107,6 +107,7 @@ public class ResultActivity extends AppCompatActivity {
                 Order order = new Order(nama.getText().toString(), menuList);
                 newOrder.child(nama.getText().toString()).setValue(order);
                 databaseMenu.removeValue();
+                finish();
             }
         });
         alertDialog.show();
