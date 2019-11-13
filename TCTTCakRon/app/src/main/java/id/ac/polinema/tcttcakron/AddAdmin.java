@@ -1,8 +1,5 @@
 package id.ac.polinema.tcttcakron;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
@@ -19,6 +16,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -180,6 +180,7 @@ public class AddAdmin extends AppCompatActivity {
 
                     Upload upload = new Upload(TempImageName,downloadUrl.toString(), hargamenu);
                     mDatabaseRef.child(TempImageName).setValue(upload);
+                    finish();
                     }
                 })
             .addOnFailureListener(new OnFailureListener() {
@@ -195,6 +196,7 @@ public class AddAdmin extends AppCompatActivity {
                     progressDialog.setTitle("Image is Uploading... (" + progress + "%)");
                 }
             });
+
         } else {
             Toast.makeText(this, "No file selected", Toast.LENGTH_SHORT).show();
         }
