@@ -36,6 +36,7 @@ import id.ac.polinema.tcttcakron.models.Upload;
 
 public class TransactionOffline extends AppCompatActivity {
     DatabaseReference databaseMenu = FirebaseDatabase.getInstance().getReference("Menu");
+    DatabaseReference databaseOrder = FirebaseDatabase.getInstance().getReference("temp");
     private TransactionOfflineAdapter mAdapter;
     private LinearLayout parentLinearLayout;
     private RecyclerView mRecyclerView;
@@ -64,13 +65,14 @@ public class TransactionOffline extends AppCompatActivity {
         jumlah = findViewById(R.id.total_tr_off);
         amount = findViewById(R.id.quantity_menu);
         submit = findViewById(R.id.buttonPesan_tr_off);
-        listMenu = new ArrayList<>();
 
         LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver, new IntentFilter("custom-message"));
         jumlah.setText(getIntent().getStringExtra("total"));
+        databaseOrder.setValue(null);
         databaseMenu.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                listMenu = new ArrayList<>();
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     Upload menu = postSnapshot.getValue(Upload.class);
                     listMenu.add(menu);
@@ -90,8 +92,20 @@ public class TransactionOffline extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(TransactionOffline.this, ResultActivity.class);
-                startActivity(intent);
+                databaseOrder.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.hasChildren()){
+                            Intent intent = new Intent(TransactionOffline.this, ResultActivity.class);
+                            startActivity(intent);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
             }
         });
 
