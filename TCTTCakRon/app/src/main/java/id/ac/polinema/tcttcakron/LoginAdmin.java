@@ -50,7 +50,7 @@ public class LoginAdmin extends AppCompatActivity {
                         User login = dataSnapshot.child(username).getValue(User.class);
                         if (login.getPassword().equals(password)){
                             Toast.makeText(LoginAdmin.this, "Success login", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getApplicationContext(), FiturAdmin.class);
+                            Intent intent = new Intent(getApplicationContext(), OptionActivity.class);
                             startActivity(intent);
                         } else {
                             Toast.makeText(LoginAdmin.this, "Password salah", Toast.LENGTH_SHORT).show();
