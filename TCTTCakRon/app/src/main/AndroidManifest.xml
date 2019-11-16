@@ -21,6 +21,9 @@
         <activity android:name=".UpdateAdmin" />
         <activity android:name=".FiturAdmin" />
         <activity android:name=".LoginAdmin" />
+        <activity android:name=".OptionActivity"/>
+        <activity android:name=".SettingAdmin"/>
+        <activity android:name=".HistoryAdmin"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

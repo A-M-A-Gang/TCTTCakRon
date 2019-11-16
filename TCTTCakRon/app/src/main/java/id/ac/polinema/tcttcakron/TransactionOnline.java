@@ -57,11 +57,12 @@ public class TransactionOnline extends AppCompatActivity {
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mProgressBar = findViewById(R.id.progress_circle);
-        listOrder = new ArrayList<>();
+
 
         databaseMenu.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                listOrder = new ArrayList<>();
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     Order menu = postSnapshot.getValue(Order.class);
                     listOrder.add(menu);
