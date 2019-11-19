@@ -25,7 +25,7 @@ public class TransactionOnlineAdapter2 extends RecyclerView.Adapter<TransactionO
     private String nama;
     int totalPerMenu = 0;
 
-    public TransactionOnlineAdapter2(Context context, List<KeranjangMenu> orders, String nNama){
+    public  TransactionOnlineAdapter2(Context context, List<KeranjangMenu> orders, String nNama){
         mContext = context;
         mMenu = orders;
         nama = nNama;

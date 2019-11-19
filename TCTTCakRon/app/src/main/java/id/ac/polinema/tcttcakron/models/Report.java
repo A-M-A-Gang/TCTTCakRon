@@ -6,12 +6,12 @@ import java.util.List;
 public class Report {
     private String nama;
     private List<KeranjangMenu> foods;
-    private Date date;
+    private String date;
 
     public Report() {
     }
 
-    public Report(String nama, List<KeranjangMenu> foods, Date date) {
+    public Report(String nama, List<KeranjangMenu> foods, String date) {
         this.nama = nama;
         this.foods = foods;
         this.date = date;
@@ -33,11 +33,11 @@ public class Report {
         this.foods = foods;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 }

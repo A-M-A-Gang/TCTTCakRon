@@ -28,6 +28,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -110,26 +112,14 @@ public class ResultActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
                 Order order = new Order(nama.getText().toString(), menuList);
                 Date c = Calendar.getInstance().getTime();
+                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                Date date = new Date();
+                String strDate = dateFormat.format(date);
                 final String year = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
                 final String month = String.valueOf(Calendar.getInstance().get(Calendar.MONTH));
                 final String day = String.valueOf(Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
-                final Report report = new Report(nama.getText().toString(), menuList, c);
-                final int[] count = {0};
-                databaseReport.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        for (DataSnapshot snapshot: dataSnapshot.child(year).child(month).child(day).getChildren()){
-                            count[0] += Integer.parseInt(String.valueOf(snapshot.getChildrenCount()))/3;
-
-                        }
-                        databaseReport.child(year).child(month).child(day).child(String.valueOf(count[0])).setValue(report);
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
+                final Report report = new Report(nama.getText().toString(), menuList, strDate);
+                databaseReport.child(strDate).setValue(report);
                 newOrder.child(nama.getText().toString()).setValue(order);
                 databaseMenu.removeValue();
                 finish();
