@@ -59,8 +59,8 @@ public class HistoryListMenuAdapter extends RecyclerView.Adapter<HistoryListMenu
         holder.nama.setText(uploadCurrent.getNameImage());
         holder.total.setText("0");
 
-        holder.intent.putExtra(uploadCurrent.getNameImage(), holder.total.getText());
-        LocalBroadcastManager.getInstance(mContext).sendBroadcast(holder.intent);
+//        holder.intent.putExtra(uploadCurrent.getNameImage(), holder.total.getText());
+//        LocalBroadcastManager.getInstance(mContext).sendBroadcast(holder.intent);
 
         BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
             @Override

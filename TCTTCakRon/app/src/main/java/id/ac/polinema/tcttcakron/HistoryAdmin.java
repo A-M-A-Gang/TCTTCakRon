@@ -155,7 +155,7 @@ public class HistoryAdmin extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         final HashMap<String, Integer> hashMap = new HashMap<String, Integer>();
-                        Intent intent = new Intent("custom-message");
+                        final Intent intent = new Intent("custom-message");
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()){
                             final Report test = snapshot.getValue(Report.class);
 
@@ -176,6 +176,8 @@ public class HistoryAdmin extends AppCompatActivity {
 
                                         ReportTotal reportTotal = new ReportTotal(getFood.getNamaMenu(), hashMap.get(getFood.getNamaMenu()));
                                         databaseReportTotal.child(getFood.getNamaMenu()).setValue(reportTotal);
+                                        intent.putExtra(getFood.getNamaMenu(), String.valueOf(hashMap.get(getFood.getNamaMenu())));
+                                        LocalBroadcastManager.getInstance(HistoryAdmin.this).sendBroadcast(intent);
                                     }
 
                                     @Override
@@ -191,21 +193,21 @@ public class HistoryAdmin extends AppCompatActivity {
 //                                    ReportTotal reportTotal = new ReportTotal(getFood.getNamaMenu(), getFood.getJumlah());
 //                                    databaseReportTotal.child(getFood.getNamaMenu()).setValue(reportTotal);
 //                                }
-                                final int[] total = new int[1];
+//                                final int[] total = new int[1];
 //                                hashMap.put(getFood.getNamaMenu(), getFood.getJumlah());
 //                                Intent intent = new Intent("custom-message");
 //                                intent.putExtra("map", hashMap);
 
-                                BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
-                                    @Override
-                                    public void onReceive(Context context, Intent intent) {
-                                        String total2 = intent.getStringExtra(getFood.getNamaMenu());
-                                        total[0] = Integer.parseInt(total2);
-                                    }
-                                };
-                                LocalBroadcastManager.getInstance(HistoryAdmin.this).registerReceiver(mMessageReceiver, new IntentFilter("custom-message2"));
-
-                                int ju = getFood.getJumlah();
+//                                BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
+//                                    @Override
+//                                    public void onReceive(Context context, Intent intent) {
+//                                        String total2 = intent.getStringExtra(getFood.getNamaMenu());
+//                                        total[0] = Integer.parseInt(total2);
+//                                    }
+//                                };
+//                                LocalBroadcastManager.getInstance(HistoryAdmin.this).registerReceiver(mMessageReceiver, new IntentFilter("custom-message2"));
+//
+//                                int ju = getFood.getJumlah();
 
 //                                ReportTotal reportTotal = new ReportTotal(getFood.getNamaMenu(), getFood.getJumlah());
 //                                Query query = databaseReportTotal.orderByChild("namaMenu").equalTo(test.getNama());
@@ -223,10 +225,10 @@ public class HistoryAdmin extends AppCompatActivity {
 //                                    }
 //                                });
 
-                                total[0] += ju;
-
-                                intent.putExtra(getFood.getNamaMenu(), String.valueOf(total[0]));
-                                LocalBroadcastManager.getInstance(HistoryAdmin.this).sendBroadcast(intent);
+//                                total[0] += ju;
+//
+//                                intent.putExtra(getFood.getNamaMenu(), String.valueOf(total[0]));
+//                                LocalBroadcastManager.getInstance(HistoryAdmin.this).sendBroadcast(intent);
 //                                jumlah.setText(getIntent().getStringExtra("total"));
                             }
 //                            reports.add(test);
