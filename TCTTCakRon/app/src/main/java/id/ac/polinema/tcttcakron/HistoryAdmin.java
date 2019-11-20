@@ -29,6 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -42,6 +43,10 @@ import id.ac.polinema.tcttcakron.models.KeranjangMenu;
 import id.ac.polinema.tcttcakron.models.Report;
 import id.ac.polinema.tcttcakron.models.ReportTotal;
 import id.ac.polinema.tcttcakron.models.Upload;
+
+import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
+import org.joda.time.LocalTime;
 
 public class HistoryAdmin extends AppCompatActivity {
     TextView dateFrom, dateTo, totalMenu, menuLaris;
@@ -129,120 +134,97 @@ public class HistoryAdmin extends AppCompatActivity {
 
         reports = new ArrayList<>();
         show.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
-                databaseMenu.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        listMenu = new ArrayList<>();
-                        for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                            Upload menu = postSnapshot.getValue(Upload.class);
-                            listMenu.add(menu);
-                        }
-                        mAdapter = new HistoryListMenuAdapter(  HistoryAdmin.this, listMenu);
-                        mRecyclerView.setAdapter(mAdapter);
-                        mProgressBar.setVisibility(View.INVISIBLE);
-                    }
+                databaseReportTotal.setValue(null);
+                String strDateFrom = dateFrom.getText().toString();
+                String strDateTo = dateTo.getText().toString();
+                final DateTime dateFrom= convertToDateTime(strDateFrom);
+                final DateTime dateTo = convertToDateTime(strDateTo);
+                if (dateTo.compareTo(dateFrom) < 0) {
+                    Toast.makeText(HistoryAdmin.this, "Invalid!", Toast.LENGTH_SHORT).show();
+                } else {
+//                        displayCurrentBirthday(todayDateTime, birthdayDateTime);
+//                        displayNextBirthday(todayDateTime, birthdayDateTime);
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                        Toast.makeText(HistoryAdmin.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
-                        mProgressBar.setVisibility(View.INVISIBLE);
-                    }
-                });
-
-                databaseReport.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        final HashMap<String, Integer> hashMap = new HashMap<String, Integer>();
-                        final Intent intent = new Intent("custom-message");
-                        for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-                            final Report test = snapshot.getValue(Report.class);
-
-                            for (final KeranjangMenu getFood : test.getFoods()){
-                                System.out.println(getFood.getNamaMenu());
-
-
-                                databaseReportTotal.addListenerForSingleValueEvent(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                        if (hashMap.get(getFood.getNamaMenu()) != null){
-                                            int asd = hashMap.get(getFood.getNamaMenu());
-                                            int kok = asd + getFood.getJumlah();
-                                            hashMap.put(getFood.getNamaMenu(), kok);
-                                        } else {
-                                            hashMap.put(getFood.getNamaMenu(), getFood.getJumlah());
-                                        }
-
-                                        ReportTotal reportTotal = new ReportTotal(getFood.getNamaMenu(), hashMap.get(getFood.getNamaMenu()));
-                                        databaseReportTotal.child(getFood.getNamaMenu()).setValue(reportTotal);
-                                        intent.putExtra(getFood.getNamaMenu(), String.valueOf(hashMap.get(getFood.getNamaMenu())));
-                                        LocalBroadcastManager.getInstance(HistoryAdmin.this).sendBroadcast(intent);
-                                    }
-
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                    }
-                                });
-//                                if (databaseReportTotal.child(getFood.getNamaMenu()) != null){
-//                                    String temp = databaseReportTotal.child(getFood.getNamaMenu()).child("totalPenjualan").getKey();
-//                                    ReportTotal reportTotal = new ReportTotal(getFood.getNamaMenu(), (getFood.getJumlah() + Integer.parseInt(temp)));
-//                                    databaseReportTotal.child(getFood.getNamaMenu()).setValue(reportTotal);
-//                                } else {
-//                                    ReportTotal reportTotal = new ReportTotal(getFood.getNamaMenu(), getFood.getJumlah());
-//                                    databaseReportTotal.child(getFood.getNamaMenu()).setValue(reportTotal);
-//                                }
-//                                final int[] total = new int[1];
-//                                hashMap.put(getFood.getNamaMenu(), getFood.getJumlah());
-//                                Intent intent = new Intent("custom-message");
-//                                intent.putExtra("map", hashMap);
-
-//                                BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
-//                                    @Override
-//                                    public void onReceive(Context context, Intent intent) {
-//                                        String total2 = intent.getStringExtra(getFood.getNamaMenu());
-//                                        total[0] = Integer.parseInt(total2);
-//                                    }
-//                                };
-//                                LocalBroadcastManager.getInstance(HistoryAdmin.this).registerReceiver(mMessageReceiver, new IntentFilter("custom-message2"));
-//
-//                                int ju = getFood.getJumlah();
-
-//                                ReportTotal reportTotal = new ReportTotal(getFood.getNamaMenu(), getFood.getJumlah());
-//                                Query query = databaseReportTotal.orderByChild("namaMenu").equalTo(test.getNama());
-//                                query.addValueEventListener(new ValueEventListener() {
-//                                    @Override
-//                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                                    for (DataSnapshot appleSnapshot: dataSnapshot.getChildren()) {
-//                                        appleSnapshot.child("totalPenjualan").getValue(Double.class);
-//                                        }
-//                                    }
-//
-//                                    @Override
-//                                    public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//                                    }
-//                                });
-
-//                                total[0] += ju;
-//
-//                                intent.putExtra(getFood.getNamaMenu(), String.valueOf(total[0]));
-//                                LocalBroadcastManager.getInstance(HistoryAdmin.this).sendBroadcast(intent);
-//                                jumlah.setText(getIntent().getStringExtra("total"));
+                    databaseMenu.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            listMenu = new ArrayList<>();
+                            for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                                Upload menu = postSnapshot.getValue(Upload.class);
+                                listMenu.add(menu);
                             }
-//                            reports.add(test);
-//                            totalMenu.setText(test.getDate());
-//                            menuLaris.setText(test.getNama());
+                            mAdapter = new HistoryListMenuAdapter(  HistoryAdmin.this, listMenu);
+                            mRecyclerView.setAdapter(mAdapter);
+                            mProgressBar.setVisibility(View.INVISIBLE);
                         }
-//                        menuLaris.setText(reports.get(0).getNama());
-                    }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                            Toast.makeText(HistoryAdmin.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                            mProgressBar.setVisibility(View.INVISIBLE);
+                        }
+                    });
 
-                    }
-                });
+                    databaseReport.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            final HashMap<String, Integer> hashMap = new HashMap<String, Integer>();
+                            final Intent intent = new Intent("custom-message");
+                            for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+
+                                final Report test = snapshot.getValue(Report.class);
+
+                                try {
+                                    SimpleDateFormat sdfSource = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+                                    Date dateFromData = sdfSource.parse(test.getDate());
+                                    SimpleDateFormat sdfDestination = new SimpleDateFormat("dd/MM/yyyy");
+                                    String strDateData = sdfDestination.format(dateFromData);
+                                    DateTime dateData= convertToDateTime(strDateData);
+                                    System.out.println(dateData);
+                                    if (dateData.compareTo(dateFrom) < 0 || dateData.compareTo(dateTo) > 0) {
+//                                        Toast.makeText(HistoryAdmin.this, "Invalid!", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        for (final KeranjangMenu getFood : test.getFoods()){
+                                            System.out.println(getFood.getNamaMenu());
+                                            databaseReportTotal.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                @Override
+                                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                    if (hashMap.get(getFood.getNamaMenu()) != null){
+                                                        int asd = hashMap.get(getFood.getNamaMenu());
+                                                        int kok = asd + getFood.getJumlah();
+                                                        hashMap.put(getFood.getNamaMenu(), kok);
+                                                    } else {
+                                                        hashMap.put(getFood.getNamaMenu(), getFood.getJumlah());
+                                                    }
+
+                                                    ReportTotal reportTotal = new ReportTotal(getFood.getNamaMenu(), hashMap.get(getFood.getNamaMenu()));
+                                                    databaseReportTotal.child(getFood.getNamaMenu()).setValue(reportTotal);
+                                                    intent.putExtra(getFood.getNamaMenu(), String.valueOf(hashMap.get(getFood.getNamaMenu())));
+                                                    LocalBroadcastManager.getInstance(HistoryAdmin.this).sendBroadcast(intent);
+                                                }
+
+                                                @Override
+                                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                                }
+                                            });
+                                        }
+                                    }
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                }
             }
         });
 
@@ -254,5 +236,18 @@ public class HistoryAdmin extends AppCompatActivity {
         });
     }
 
+    private DateTime convertToDateTime(String stringToConvert) {
+        String[] newStringArray = convertStringToArray(stringToConvert);
+        int year = Integer.parseInt(newStringArray[2].trim());
+        int day = Integer.parseInt(newStringArray[0].trim());
+        int month = Integer.parseInt(newStringArray[1].trim());
+        LocalDate mLocalDate = new LocalDate(year, month, day);
+        DateTime firstDateTime = mLocalDate.toDateTime(LocalTime.fromDateFields(mLocalDate.toDate()));
+        return firstDateTime;
+    }
 
+    private String[] convertStringToArray(String stringToConvert){
+        String[] newStringArray = stringToConvert.split("/");
+        return newStringArray;
+    }
 }

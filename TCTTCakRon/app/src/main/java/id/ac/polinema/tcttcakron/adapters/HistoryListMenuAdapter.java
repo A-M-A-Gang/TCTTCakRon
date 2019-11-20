@@ -39,7 +39,6 @@ import id.ac.polinema.tcttcakron.models.Upload;
 public class HistoryListMenuAdapter extends RecyclerView.Adapter<HistoryListMenuAdapter.ImageViewHolder> {
     private Context mContext;
     private List<Upload> mUploads;
-    int jumlah = 0;
 
     public HistoryListMenuAdapter(Context context, List<Upload> uploads){
         mContext = context;
@@ -58,10 +57,6 @@ public class HistoryListMenuAdapter extends RecyclerView.Adapter<HistoryListMenu
         final Upload uploadCurrent = mUploads.get(position);
         holder.nama.setText(uploadCurrent.getNameImage());
         holder.total.setText("0");
-
-//        holder.intent.putExtra(uploadCurrent.getNameImage(), holder.total.getText());
-//        LocalBroadcastManager.getInstance(mContext).sendBroadcast(holder.intent);
-
         BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
@@ -70,8 +65,6 @@ public class HistoryListMenuAdapter extends RecyclerView.Adapter<HistoryListMenu
             }
         };
         LocalBroadcastManager.getInstance(mContext).registerReceiver(mMessageReceiver, new IntentFilter("custom-message"));
-//        Intent intent = new Intent("custom-message");
-//        intent.putExtra("total", String.valueOf(jumlah));
     }
 
     @Override
@@ -82,7 +75,6 @@ public class HistoryListMenuAdapter extends RecyclerView.Adapter<HistoryListMenu
     public class ImageViewHolder extends RecyclerView.ViewHolder {
         public TextView nama, total;
         DatabaseReference mDatabaseRef;
-        Intent intent = new Intent("custom-message2");
         public ImageViewHolder(View itemView){
             super(itemView);
 
