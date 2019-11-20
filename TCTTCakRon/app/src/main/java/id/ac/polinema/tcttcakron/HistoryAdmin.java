@@ -36,6 +36,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import id.ac.polinema.tcttcakron.adapters.HistoryListMenuAdapter;
 import id.ac.polinema.tcttcakron.adapters.TransactionOfflineAdapter;
@@ -199,6 +200,23 @@ public class HistoryAdmin extends AppCompatActivity {
                                                     } else {
                                                         hashMap.put(getFood.getNamaMenu(), getFood.getJumlah());
                                                     }
+
+                                                    Map.Entry<String, Integer> firstEntry = hashMap.entrySet().iterator().next();
+                                                    String largestKey = firstEntry.getKey();
+                                                    int largestKeyValue = firstEntry.getValue();
+
+                                                    for (Map.Entry<String, Integer> map : hashMap.entrySet()) {
+                                                        int key = map.getValue();
+                                                        if (key > largestKeyValue) {
+                                                            largestKeyValue = key;
+                                                            largestKey = map.getKey();
+                                                        }
+                                                    }
+                                                    System.out.println("Largest Key       : " + largestKey);
+                                                    System.out.println("Largest Key Value : " + largestKeyValue);
+
+                                                    totalMenu.setText(String.valueOf(largestKeyValue));
+                                                    menuLaris.setText(largestKey);
 
                                                     ReportTotal reportTotal = new ReportTotal(getFood.getNamaMenu(), hashMap.get(getFood.getNamaMenu()));
                                                     databaseReportTotal.child(getFood.getNamaMenu()).setValue(reportTotal);
