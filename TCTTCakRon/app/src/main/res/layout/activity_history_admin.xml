@@ -98,52 +98,51 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp">
 
                     <Button
+                        android:id="@+id/hari3_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Button One" />
+                        android:text="3 Hari" />
 
                     <Button
+                        android:id="@+id/minggu_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Button Two" />
+                        android:text="1 Minggu" />
 
                     <Button
+                        android:id="@+id/bulan_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Button Three" />
+                        android:text="Bulan ini" />
 
                     <Button
+                        android:id="@+id/hari30_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Button Four" />
+                        android:text="30 Hari" />
 
                     <Button
+                        android:id="@+id/bulan3_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Button Five" />
+                        android:text="3 Bulan" />
 
                     <Button
+                        android:id="@+id/tahun_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Button Six" />
+                        android:text="Tahun ini" />
 
                     <Button
+                        android:id="@+id/tahun1_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Button Seven" />
+                        android:text="1 Tahun" />
 
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Button Eight" />
-
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Button Nine" />
                 </LinearLayout>
             </HorizontalScrollView>
 
@@ -196,7 +195,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/age_header">
 
-                <TableRow android:padding="24dp">
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="24dp">
 
                     <TextView
                         android:id="@+id/menu_laris"
@@ -239,59 +241,16 @@
                 android:layout_marginTop="32dp"
                 android:background="#B2DFDB"
                 android:padding="12dp"
-                android:text="test2"
+                android:text="Jumlah menu yang dipesan"
                 android:textColor="#000000"
                 android:textSize="16sp"
                 android:textStyle="bold" />
-
-            <TableLayout
-                android:id="@+id/next_age_table"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/next_birthday_header">
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="24dp">
-
-                    <TextView
-                        android:id="@+id/years_in_birthday"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center|center_horizontal"
-                        android:text="4"
-                        android:textColor="#000000"
-                        android:textSize="16dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/months_in_birthday"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center|center_horizontal"
-                        android:text="5"
-                        android:textColor="#000000"
-                        android:textSize="16dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/days_in_birthday"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center|center_horizontal"
-                        android:text="6"
-                        android:textColor="#000000"
-                        android:textSize="16dp"
-                        android:textStyle="bold" />
-                </TableRow>
-            </TableLayout>
 
             <RelativeLayout
                 android:id="@+id/list_history_menu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="@+id/next_age_table"
+                android:layout_alignParentTop="@+id/next_birthday_header"
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="640dp">
 

@@ -29,6 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -51,7 +52,7 @@ import org.joda.time.LocalTime;
 
 public class HistoryAdmin extends AppCompatActivity {
     TextView dateFrom, dateTo, totalMenu, menuLaris;
-    Button show, reset;
+    Button show, reset, hari3, minggu, bulanini, hari30, bulan3, tahunini, tahun1;
     private ProgressBar mProgressBar;
     private HistoryListMenuAdapter mAdapter;
     private RecyclerView mRecyclerView;
@@ -76,6 +77,13 @@ public class HistoryAdmin extends AppCompatActivity {
         reset = findViewById(R.id.button_clear);
         totalMenu = findViewById(R.id.total_menu_laris);
         menuLaris = findViewById(R.id.menu_laris);
+        hari3 = findViewById(R.id.hari3_button);
+        minggu = findViewById(R.id.minggu_button);
+        bulanini = findViewById(R.id.bulan_button);
+        hari30 = findViewById(R.id.hari30_button);
+        bulan3 = findViewById(R.id.bulan3_button);
+        tahunini = findViewById(R.id.tahun_button);
+        tahun1 = findViewById(R.id.tahun1_button);
 
         RelativeLayout placeholder = findViewById(R.id.list_history_menu);
         LayoutInflater inflate = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -86,13 +94,13 @@ public class HistoryAdmin extends AppCompatActivity {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mProgressBar = findViewById(R.id.progress_circle);
 
-        Date c = Calendar.getInstance().getTime();
+        final Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         String formattedDate = df.format(c);
         dateFrom.setText(formattedDate);
         dateTo.setText(formattedDate);
 
-
+        reports = new ArrayList<>();
 
         dateFrom.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,9 +139,6 @@ public class HistoryAdmin extends AppCompatActivity {
         });
 
 
-
-
-        reports = new ArrayList<>();
         show.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -250,6 +255,87 @@ public class HistoryAdmin extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+            }
+        });
+
+        hari3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+                String formattedDate = df.format(c.getTime() - ((24*60*60*1000) * 3));
+                dateFrom.setText(formattedDate);
+                show.performClick();
+            }
+        });
+
+        minggu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+                String formattedDate = df.format(c.getTime() - ((24*60*60*1000) * 7));
+                dateFrom.setText(formattedDate);
+                show.performClick();
+            }
+        });
+
+        bulanini.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar c = Calendar.getInstance();
+                c.set(Calendar.DAY_OF_MONTH, 1);
+                SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+                String strDateData = df.format(c.getTime());
+                dateFrom.setText(strDateData);
+                show.performClick();
+            }
+        });
+
+        hari30.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar c = Calendar.getInstance();
+                c.add(Calendar.MONTH, -1);
+                SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+                String formattedDate = df.format(c.getTime());
+                dateFrom.setText(formattedDate);
+                show.performClick();
+            }
+        });
+
+        bulan3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar c = Calendar.getInstance();
+                c.add(Calendar.MONTH, -3);
+                SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+                String formattedDate = df.format(c.getTime());
+                dateFrom.setText(formattedDate);
+                show.performClick();
+            }
+        });
+
+        tahunini.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar c = Calendar.getInstance();
+                c.set(Calendar.DAY_OF_MONTH, 1);
+                c.set(Calendar.MONTH, 0);
+                SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+                String strDateData = df.format(c.getTime());
+                dateFrom.setText(strDateData);
+                show.performClick();
+            }
+        });
+
+        tahun1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar c = Calendar.getInstance();
+                c.add(Calendar.YEAR, -1);
+                SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+                String formattedDate = df.format(c.getTime());
+                dateFrom.setText(formattedDate);
+                show.performClick();
             }
         });
     }
