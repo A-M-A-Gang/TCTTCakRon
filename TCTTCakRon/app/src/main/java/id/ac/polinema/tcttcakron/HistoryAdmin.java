@@ -40,6 +40,7 @@ import java.util.List;
 import java.util.Map;
 
 import id.ac.polinema.tcttcakron.adapters.HistoryListMenuAdapter;
+import id.ac.polinema.tcttcakron.adapters.TransactionListAdapter;
 import id.ac.polinema.tcttcakron.adapters.TransactionOfflineAdapter;
 import id.ac.polinema.tcttcakron.models.KeranjangMenu;
 import id.ac.polinema.tcttcakron.models.Report;
@@ -51,11 +52,12 @@ import org.joda.time.LocalDate;
 import org.joda.time.LocalTime;
 
 public class HistoryAdmin extends AppCompatActivity {
-    TextView dateFrom, dateTo, totalMenu, menuLaris;
+    TextView dateFrom, dateTo, totalMenu, menuLaris, tanggalTr, totalTr;
     Button show, reset, hari3, minggu, bulanini, hari30, bulan3, tahunini, tahun1;
     private ProgressBar mProgressBar;
     private HistoryListMenuAdapter mAdapter;
-    private RecyclerView mRecyclerView;
+    private TransactionListAdapter mAdapter2;
+    private RecyclerView mRecyclerView, mRecyclerView2;
 
     Calendar calendar;
     DatePickerDialog dpd;
@@ -93,6 +95,14 @@ public class HistoryAdmin extends AppCompatActivity {
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mProgressBar = findViewById(R.id.progress_circle);
+
+//        RelativeLayout placeholder2 = findViewById(R.id.list_transaksi_menu);
+//        LayoutInflater inflate2 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//        final RelativeLayout holder2 = (RelativeLayout) inflate2.inflate(R.layout.activity_menu_list, null);
+//        placeholder2.addView(holder2);
+//        mRecyclerView2 = findViewById(R.id.recycleview_menu);
+//        mRecyclerView2.setHasFixedSize(true);
+//        mRecyclerView2.setLayoutManager(new LinearLayoutManager(this));
 
         final Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
@@ -177,7 +187,14 @@ public class HistoryAdmin extends AppCompatActivity {
                     databaseReport.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            String[] tanggalMenu = new String[10];
+//                            int[] jumlahTransaksi;
+                            int totalTransaksi = 0;
+                            int counter = 0, counterloop = 0;
+
+                            String dateTemp = null;
                             final HashMap<String, Integer> hashMap = new HashMap<String, Integer>();
+                            HashMap<String, Integer> tanggal = new HashMap<>();
                             final Intent intent = new Intent("custom-message");
                             for (DataSnapshot snapshot : dataSnapshot.getChildren()){
 
@@ -188,8 +205,30 @@ public class HistoryAdmin extends AppCompatActivity {
                                     Date dateFromData = sdfSource.parse(test.getDate());
                                     SimpleDateFormat sdfDestination = new SimpleDateFormat("dd/MM/yyyy");
                                     String strDateData = sdfDestination.format(dateFromData);
+                                    counter++;
+                                    if (dateTemp == null || !dateTemp.equals(strDateData)){
+                                        System.out.println("1");
+                                        dateTemp = strDateData;
+                                        counter = 1;
+                                        if (tanggalMenu[0] == null){
+                                            tanggalMenu[0] = strDateData;
+                                        }
+                                    } else if (totalTransaksi < counter) {
+                                        tanggalMenu = new String[10];
+                                        counterloop = 0;
+                                        System.out.println("2");
+                                        totalTransaksi = counter;
+                                        tanggalMenu[counterloop] = strDateData;
+                                    } else if (totalTransaksi == counter){
+                                        System.out.println("3");
+                                        counterloop++;
+                                        tanggalMenu[counterloop] = strDateData;
+                                    } else {
+                                        System.out.println("4");
+                                    }
                                     DateTime dateData= convertToDateTime(strDateData);
                                     System.out.println(dateData);
+
                                     if (dateData.compareTo(dateFrom) < 0 || dateData.compareTo(dateTo) > 0) {
 //                                        Toast.makeText(HistoryAdmin.this, "Invalid!", Toast.LENGTH_SHORT).show();
                                     } else {
@@ -239,7 +278,27 @@ public class HistoryAdmin extends AppCompatActivity {
                                 } catch (ParseException e) {
                                     e.printStackTrace();
                                 }
+//                                Map.Entry<String, Integer> maxEntry = null;
+//                                for (Map.Entry<String, Integer> entry : tanggal.entrySet()){
+//                                    if (maxEntry == null || entry.getValue().compareTo(maxEntry.getValue()) > 0)
+//                                    {
+//                                        maxEntry = entry;
+//                                    }
+//                                }
+//                                mAdapter2 = new TransactionListAdapter(  HistoryAdmin.this, maxEntry);
+//                                mRecyclerView2.setAdapter(mAdapter2);
+//                                mProgressBar.setVisibility(View.INVISIBLE);
                             }
+
+                            for (int i = 0; i < tanggalMenu.length; i++){
+                                if(tanggalMenu[i] == null){
+                                    break;
+                                }
+                                System.out.println("Tanggal: " + tanggalMenu[i]);
+                            }
+                            System.out.println("Total: " + totalTransaksi);
+                            System.out.println("Counter: " + counter);
+                            System.out.println("Counterloop: " + counterloop);
                         }
 
                         @Override
