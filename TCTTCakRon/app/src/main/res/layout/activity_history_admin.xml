@@ -234,7 +234,7 @@
             </TableLayout>
 
             <TextView
-                android:id="@+id/next_birthday_header"
+                android:id="@+id/jumlah_menu_transaksi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/age_table"
@@ -250,9 +250,7 @@
                 android:id="@+id/list_history_menu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/next_birthday_header"
-                android:layout_alignParentBottom="true">
-            </RelativeLayout>
+                android:layout_below="@+id/jumlah_menu_transaksi"></RelativeLayout>
 
             <TextView
                 android:id="@+id/transaksi_terbanyak_header"

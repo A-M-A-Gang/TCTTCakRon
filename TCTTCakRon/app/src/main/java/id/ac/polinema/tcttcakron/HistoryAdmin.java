@@ -96,13 +96,13 @@ public class HistoryAdmin extends AppCompatActivity {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mProgressBar = findViewById(R.id.progress_circle);
 
-//        RelativeLayout placeholder2 = findViewById(R.id.list_transaksi_menu);
-//        LayoutInflater inflate2 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//        final RelativeLayout holder2 = (RelativeLayout) inflate2.inflate(R.layout.activity_menu_list, null);
-//        placeholder2.addView(holder2);
-//        mRecyclerView2 = findViewById(R.id.recycleview_menu);
-//        mRecyclerView2.setHasFixedSize(true);
-//        mRecyclerView2.setLayoutManager(new LinearLayoutManager(this));
+        RelativeLayout placeholder2 = findViewById(R.id.list_transaksi_menu);
+        LayoutInflater inflate2 = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final RelativeLayout holder2 = (RelativeLayout) inflate2.inflate(R.layout.activity_menu_list2, null);
+        placeholder2.addView(holder2);
+        mRecyclerView2 = findViewById(R.id.recycleview_menu2);
+        mRecyclerView2.setHasFixedSize(true);
+        mRecyclerView2.setLayoutManager(new LinearLayoutManager(this));
 
         final Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
@@ -296,9 +296,12 @@ public class HistoryAdmin extends AppCompatActivity {
                                 }
                                 System.out.println("Tanggal: " + tanggalMenu[i]);
                             }
-                            System.out.println("Total: " + totalTransaksi);
-                            System.out.println("Counter: " + counter);
-                            System.out.println("Counterloop: " + counterloop);
+                            mAdapter2 = new TransactionListAdapter(HistoryAdmin.this, tanggalMenu, totalTransaksi);
+                            mRecyclerView2.setAdapter(mAdapter2);
+                            mProgressBar.setVisibility(View.INVISIBLE);
+//                            System.out.println("Total: " + totalTransaksi);
+//                            System.out.println("Counter: " + counter);
+//                            System.out.println("Counterloop: " + counterloop);
                         }
 
                         @Override
