@@ -28,18 +28,23 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import id.ac.polinema.tcttcakron.adapters.ResultActivityAdapter;
 import id.ac.polinema.tcttcakron.models.KeranjangMenu;
 import id.ac.polinema.tcttcakron.models.Order;
+import id.ac.polinema.tcttcakron.models.Report;
 
 public class ResultActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private ProgressBar mProgressBar;
     private List<KeranjangMenu> menuList;
-    DatabaseReference databaseMenu, newOrder;
+    DatabaseReference databaseMenu, newOrder, databaseReport;
     private ResultActivityAdapter mAdapter;
     TextView totalBelanja;
     Button pesan;
@@ -63,6 +68,7 @@ public class ResultActivity extends AppCompatActivity {
         pesan = findViewById(R.id.order_result);
         databaseMenu = FirebaseDatabase.getInstance().getReference("temp");
         newOrder = FirebaseDatabase.getInstance().getReference("Order");
+        databaseReport = FirebaseDatabase.getInstance().getReference("Report");
         databaseMenu.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -105,11 +111,21 @@ public class ResultActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 Order order = new Order(nama.getText().toString(), menuList);
+                Date c = Calendar.getInstance().getTime();
+                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                Date date = new Date();
+                String strDate = dateFormat.format(date);
+                final String year = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
+                final String month = String.valueOf(Calendar.getInstance().get(Calendar.MONTH));
+                final String day = String.valueOf(Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
+                final Report report = new Report(nama.getText().toString(), menuList, strDate);
+                databaseReport.child(strDate).setValue(report);
                 newOrder.child(nama.getText().toString()).setValue(order);
                 databaseMenu.removeValue();
                 finish();
             }
-        });
+        })
+        ;
         alertDialog.show();
     }
 

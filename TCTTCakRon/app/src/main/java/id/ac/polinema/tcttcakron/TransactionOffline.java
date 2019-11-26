@@ -67,7 +67,6 @@ public class TransactionOffline extends AppCompatActivity {
         submit = findViewById(R.id.buttonPesan_tr_off);
 
         LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver, new IntentFilter("custom-message"));
-        jumlah.setText(getIntent().getStringExtra("total"));
         databaseOrder.setValue(null);
         databaseMenu.addValueEventListener(new ValueEventListener() {
             @Override
