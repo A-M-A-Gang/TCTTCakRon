@@ -48,7 +48,9 @@ public class LoginAdmin extends AppCompatActivity {
                 if(dataSnapshot.child(username).exists()){
                     if (!username.isEmpty()){
                         User login = dataSnapshot.child(username).getValue(User.class);
-                        if (login.getPassword().equals(password)){
+                        if (login.getPassword().equals("")){
+                            Toast.makeText(LoginAdmin.this, "Isi password dulu", Toast.LENGTH_SHORT).show();
+                        } else if (login.getPassword().equals(password)){
                             Toast.makeText(LoginAdmin.this, "Success login", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplicationContext(), SettingAdmin.class);
                             startActivity(intent);
@@ -57,10 +59,10 @@ public class LoginAdmin extends AppCompatActivity {
                         }
                     }
                     else {
-                        Toast.makeText(LoginAdmin.this, "Username tidak ditemukan", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginAdmin.this, "Tidak ada akun, silahkan daftar dulu", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(LoginAdmin.this, "Not Found", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginAdmin.this, "Username tidak ditemukan", Toast.LENGTH_SHORT).show();
                 }
             }
 
