@@ -34,28 +34,47 @@ public class SignUpActivity extends AppCompatActivity {
         password = findViewById(R.id.in_password_signup);
         signUp = findViewById(R.id.signUpButton);
 
+//        int passwordLength = passwordString.length();
+
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final User user = new User(username.getText().toString(), password.getText().toString());
 
-                karyawan.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.child(user.getUsername()).exists()){
-                            Toast.makeText(SignUpActivity.this, "Username telah ada", Toast.LENGTH_SHORT).show();
-                        } else {
-                            karyawan.child(user.getUsername()).setValue(user);
-                            Toast.makeText(SignUpActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                String passwordString = password.getText().toString();
+                if (passwordString.matches("") || passwordString.contains(" ")) {
+                    Toast.makeText(SignUpActivity.this, "Password invalid", Toast.LENGTH_SHORT).show();
+                    return;
+                } else {
+                    final User user = new User(username.getText().toString(), password.getText().toString());
+
+                    karyawan.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            if (dataSnapshot.child(user.getUsername()).exists()){
+                                Toast.makeText(SignUpActivity.this, "Username telah ada", Toast.LENGTH_SHORT).show();
+                            } else {
+                                karyawan.child(user.getUsername()).setValue(user);
+                                Toast.makeText(SignUpActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-                        Toast.makeText(SignUpActivity.this, "Tidak connect", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                            Toast.makeText(SignUpActivity.this, "Tidak connect", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
             }
         });
+    }
+    public static boolean containsWhiteSpace(String testCode){
+        if(testCode.isEmpty()){
+            for(int i = 0; i < testCode.length(); i++){
+                if(Character.isWhitespace(testCode.charAt(i))){
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }
