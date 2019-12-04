@@ -149,7 +149,7 @@ public class UpdateMenuAdmin extends AppCompatActivity {
                             final String TempImageName = nama.getText().toString().trim();
                             final int hargamenu = Integer.parseInt(harga.getText().toString());
                             progressDialog.dismiss();
-                            Toast.makeText(getApplicationContext(), "Image Uploaded Successfully ", Toast.LENGTH_LONG).show();
+//                            Toast.makeText(getApplicationContext(), "Image Uploaded Successfully ", Toast.LENGTH_LONG).show();
                             Task<Uri> urlTask = taskSnapshot.getStorage().getDownloadUrl();
                             while (!urlTask.isSuccessful());
                             Uri downloadUrl = urlTask.getResult();
@@ -158,12 +158,13 @@ public class UpdateMenuAdmin extends AppCompatActivity {
                                 mDatabaseRef.child(namaSelected).setValue(null).addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {
-                                        Toast.makeText(getApplicationContext(), "Remove old database success", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getApplicationContext(), "Update success", Toast.LENGTH_LONG).show();
+                                        finish();
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
-                                        Toast.makeText(getApplicationContext(), "Remove old database failed!!!", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getApplicationContext(), "Update failed!!!", Toast.LENGTH_LONG).show();
                                     }
                                 });
                             }
@@ -185,19 +186,20 @@ public class UpdateMenuAdmin extends AppCompatActivity {
                         }
                     });
         } else {
-            Toast.makeText(this, "No file selected", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "No file selected", Toast.LENGTH_SHORT).show();
             final String TempImageName = nama.getText().toString().trim();
             final int hargamenu = Integer.parseInt(harga.getText().toString());
             if (TempImageName != namaSelected){
                 mDatabaseRef.child(namaSelected).setValue(null).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Toast.makeText(getApplicationContext(), "Remove old database success", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Update success", Toast.LENGTH_LONG).show();
+                        finish();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(getApplicationContext(), "Remove old database failed!!!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Update failed!!!", Toast.LENGTH_LONG).show();
                     }
                 });
             }
